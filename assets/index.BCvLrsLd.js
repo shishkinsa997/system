@@ -97,7 +97,7 @@ function initSidebar() {
   const main = el("a", {
     id: "logo",
     className: "flex items-center my-2 gap-2 py-2 px-4 overflow-hidden",
-    attrs: { href: "#" }
+    attrs: { href: "/system/" }
   });
   const mainTitle = el("span", {
     className: "ml-2 text-l font-bold",
@@ -164,21 +164,21 @@ function initSidebar() {
     "Dashboard",
     "dashboard",
     dashLogo,
-    "#"
+    "/system/"
   );
-  const search = createSidebarElement("Search", "search", searchLogo, "#");
+  const search = createSidebarElement("Search", "search", searchLogo, "/system/products");
   const insights = createSidebarElement(
     "Insights",
     "insights",
     insightsLogo,
-    "#"
+    "/system/products"
   );
-  const docs = createSidebarElement("Docs", "docs", docsLogo, "#");
+  const docs = createSidebarElement("Docs", "docs", docsLogo, "/system/products");
   const products = createSidebarElement(
     "Products",
     "products",
     productsLogo,
-    "#"
+    "/system/products"
   );
   headerNav.append(dashboard, search, insights, docs, products);
   header.append(headerNav);
@@ -215,6 +215,70 @@ function initSidebar() {
   });
   return sidebar;
 }
+function initPage() {
+  const page = el("main", {
+    id: "main",
+    className: "flex flex-col h-full w-full transition-all duration-300 p-2 pl-16"
+  });
+  const mainWrapper = el("div", {
+    className: "flex flex-col flex-1 items-center bg-[#171721] h-full min-h-[calc(100dvh-16px)] p-2 rounded-lg overflow-y-auto border border-[#b4b7c81f]"
+  });
+  const content = el("div", {
+    id: "page-content",
+    className: "flex flex-1 w-full h-full"
+  });
+  mainWrapper.append(content);
+  page.append(mainWrapper);
+  window.addEventListener("sidebar:open", () => {
+    page.classList.remove("pl-16");
+    page.classList.add("pl-64");
+  });
+  window.addEventListener("sidebar:close", () => {
+    page.classList.remove("pl-64");
+    page.classList.add("pl-16");
+  });
+  return { page, content };
+}
+function buildUI(root) {
+  const app = el("div", {
+    id: "app",
+    className: "fixed overflow-hidden left-0 top-0 min-w-screen h-dvh bg-[#10101a] text-gray-400"
+  });
+  const aside = initSidebar();
+  const { page, content } = initPage();
+  app.append(aside, page);
+  root.appendChild(app);
+  return { main: content };
+}
+const router = {
+  routes: [],
+  container: null,
+  init(routes, container) {
+    this.routes = routes;
+    this.container = container;
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest("[data-link]");
+      if (link) {
+        e.preventDefault();
+        this.navigate(link.getAttribute("href"));
+      }
+    });
+    window.addEventListener("popstate", () => this.render());
+    this.render();
+  },
+  navigate(path) {
+    window.history.pushState({}, "", path);
+    this.render();
+  },
+  render() {
+    const path = window.location.pathname;
+    const route = this.routes.find((r) => r.path === path) || this.routes.find((r) => r.path === "*");
+    if (!route) return;
+    const element = route.component();
+    if (!element) return;
+    this.container.replaceChildren(element);
+  }
+};
 function initSearch() {
   const search = el("div", {
     className: "relative flex items-center h-10 w-full rounded-lg bg-[#171721]"
@@ -331,7 +395,7 @@ function initCard(title = "Card Title", link = "card.png", desc = "Card Descript
     attrs: { src: link, alt: "person capturing an image", tabindex: "0" }
   });
   const cardContent = el("div", {
-    className: "focus:outline-none pt-2"
+    className: "flex flex-col gap-1 focus:outline-none pt-2"
   });
   const cardTitle = el("h3", {
     className: "focus:outline-none text-sm font-medium text-zinc-950 dark:text-white",
@@ -352,28 +416,25 @@ function initCard(title = "Card Title", link = "card.png", desc = "Card Descript
   return card;
 }
 function initGridCards() {
-  const card1 = initCard("Coding", "3.jpg");
-  const card2 = initCard("Sing", "8.jpg");
-  const card3 = initCard("Rest", "7.jpg");
+  const card1 = initCard("Coding", "3.jpg", "Work hard, Play hard");
+  const card2 = initCard("Sing", "8.jpg", "I kissed a man and I like it");
+  const card3 = initCard("Rest", "7.jpg", "Work is not wolf, wolf is walk");
   const card4 = initCard("Love yourself", "5.jpg");
   const card5 = initCard("Training", "6.jpg");
-  const card6 = initCard("Be cool", "1.jpg");
+  const card6 = initCard("Be cool", "1.jpg", "Who I am today");
+  const card7 = initCard("Shine", "2.jpg", "Shine bright like a diamond");
   const gridCards = el("div", {
     className: "grid grid-cols-1 h-full w-full md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
   });
-  gridCards.append(card1, card2, card3, card4, card5, card6);
+  gridCards.append(card1, card2, card3, card4, card5, card6, card7);
   return gridCards;
 }
 function initDashboard() {
   const header = initHeader();
   const filterBar = initFilterBar();
   const gridCards = initGridCards();
-  const dashboard = el("main", {
-    id: "main",
-    className: "flex flex-col h-full w-full transition-all duration-300 p-2 pl-16"
-  });
-  const mainWrapper = el("div", {
-    className: "flex flex-col flex-1 items-center bg-[#171721] h-full p-2 rounded-lg overflow-y-auto border border-[#b4b7c81f]"
+  const dashboard = el("div", {
+    className: "flex flex-col flex-1 items-center h-full w-full"
   });
   const page = el("div", {
     className: "flex flex-1 items-start justify-center py-2 w-full"
@@ -387,28 +448,61 @@ function initDashboard() {
   });
   pageContent.append(pageTitle, filterBar, gridCards);
   page.append(pageContent);
-  dashboard.append(mainWrapper);
-  mainWrapper.append(header, page);
-  window.addEventListener("sidebar:open", () => {
-    dashboard.classList.remove("pl-16");
-    dashboard.classList.add("pl-64");
-  });
-  window.addEventListener("sidebar:close", () => {
-    dashboard.classList.remove("pl-64");
-    dashboard.classList.add("pl-16");
-  });
+  dashboard.append(header, page);
   return dashboard;
 }
-function buildUI(root) {
-  const app = el("div", {
-    id: "app",
-    className: "fixed overflow-hidden left-0 top-0 min-w-screen h-dvh bg-[#10101a] text-gray-400"
+function initProducts() {
+  const header = initHeader();
+  const products = el("div", {
+    className: "flex flex-col flex-1 items-center h-full w-full"
   });
-  const aside = initSidebar();
-  const main = initDashboard();
-  app.append(aside, main);
-  root.appendChild(app);
+  const page = el("div", {
+    className: "flex flex-1 items-start justify-center py-2 w-full"
+  });
+  const pageContent = el("div", {
+    className: "flex flex-1 flex-col items-start justify-start mx-3 max-w-225 gap-2"
+  });
+  const pageTitle = el("h1", {
+    text: "Products",
+    className: "text-2xl font-bold text-zinc-950 dark:text-white"
+  });
+  const description = el("p", {
+    text: "Here will be the products list.",
+    className: "text-sm text-gray-400"
+  });
+  pageContent.append(pageTitle, description);
+  page.append(pageContent);
+  products.append(header, page);
+  return products;
+}
+function initNotFound() {
+  const page = el("div", {
+    className: "grid h-full w-full place-content-center px-4"
+  });
+  const title = el("h1", {
+    className: "uppercase tracking-widest text-gray-50",
+    text: "404 | Not Found"
+  });
+  page.append(title);
+  return page;
 }
 document.addEventListener("DOMContentLoaded", () => {
-  buildUI(document.body);
+  const { main } = buildUI(document.body);
+  router.init(
+    [
+      {
+        path: "/system/",
+        component: () => initDashboard()
+      },
+      {
+        path: "/system/products",
+        component: () => initProducts()
+      },
+      {
+        path: "*",
+        component: () => initNotFound()
+      }
+    ],
+    main
+  );
 });
