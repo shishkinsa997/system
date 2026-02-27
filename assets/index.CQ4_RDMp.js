@@ -74,7 +74,7 @@ function createSidebarElement(tag, id, icon, link = "#") {
   const container = el("a", {
     id: `${id}`,
     className: "flex items-center w-full overflow-hidden h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 transition-all duration-300",
-    attrs: { href: link }
+    attrs: { href: link, "data-link": "true" }
   });
   const text = el("span", {
     className: "ml-4 text-sm font-medium",
@@ -97,7 +97,7 @@ function initSidebar() {
   const main = el("a", {
     id: "logo",
     className: "flex items-center my-2 gap-2 py-2 px-4 overflow-hidden",
-    attrs: { href: "/system/" }
+    attrs: { href: "/", "data-link": "true" }
   });
   const mainTitle = el("span", {
     className: "ml-2 text-l font-bold",
@@ -164,21 +164,21 @@ function initSidebar() {
     "Dashboard",
     "dashboard",
     dashLogo,
-    "/system/"
+    "/"
   );
-  const search = createSidebarElement("Search", "search", searchLogo, "/system/products");
+  const search = createSidebarElement("Search", "search", searchLogo, "/products");
   const insights = createSidebarElement(
     "Insights",
     "insights",
     insightsLogo,
-    "/system/products"
+    "/products"
   );
-  const docs = createSidebarElement("Docs", "docs", docsLogo, "/system/products");
+  const docs = createSidebarElement("Docs", "docs", docsLogo, "/products");
   const products = createSidebarElement(
     "Products",
     "products",
     productsLogo,
-    "/system/products"
+    "/products"
   );
   headerNav.append(dashboard, search, insights, docs, products);
   header.append(headerNav);
@@ -188,7 +188,7 @@ function initSidebar() {
   const footerContainer = el("a", {
     id: "avatar",
     className: "flex items-center gap-3 my-3 overflow-hidden rounded-lg hover:text-gray-300 transition-all duration-300",
-    attrs: { href: "#" }
+    attrs: { href: "/login", "data-link": "true" }
   });
   const avatarText = el("span", {
     className: "min-w-0"
@@ -250,9 +250,19 @@ function buildUI(root) {
   root.appendChild(app);
   return { main: content };
 }
+const BASE_URL = "/system/";
 const router = {
   routes: [],
   container: null,
+  getFullPath(path) {
+    return BASE_URL + path.replace(/^\//, "");
+  },
+  getRoutePath(fullPath) {
+    if (fullPath === BASE_URL.replace(/\/$/, "")) return "/";
+    if (!fullPath.startsWith(BASE_URL)) return null;
+    const relativePath = fullPath.slice(BASE_URL.length);
+    return "/" + relativePath.replace(/^\/?/, "");
+  },
   init(routes, container) {
     this.routes = routes;
     this.container = container;
@@ -260,19 +270,21 @@ const router = {
       const link = e.target.closest("[data-link]");
       if (link) {
         e.preventDefault();
-        this.navigate(link.getAttribute("href"));
+        const href = link.getAttribute("href");
+        this.navigate(href);
       }
     });
     window.addEventListener("popstate", () => this.render());
     this.render();
   },
   navigate(path) {
-    window.history.pushState({}, "", path);
+    const fullPath = this.getFullPath(path);
+    window.history.pushState({}, "", fullPath);
     this.render();
   },
   render() {
-    const path = window.location.pathname;
-    const route = this.routes.find((r) => r.path === path) || this.routes.find((r) => r.path === "*");
+    const currentPath = this.getRoutePath(window.location.pathname);
+    const route = this.routes.find((r) => r.path === currentPath) || this.routes.find((r) => r.path === "*");
     if (!route) return;
     const element = route.component();
     if (!element) return;
@@ -312,7 +324,7 @@ function initSearch() {
 }
 function initHeader() {
   const header = el("div", {
-    className: "flex items-center justify-center min-h-12 py-2 w-full"
+    className: "flex items-center justify-center min-h-12 h-12 py-2 w-full"
   });
   const headerContent = el("nav", {
     className: "flex items-center justify-between w-full mx-3 max-w-225 gap-2"
@@ -385,48 +397,71 @@ function initFilterBar() {
   filterBar.append(filter, mostRecentButton, highestRatedButton, verifiedTradersButton, withPhotosButton);
   return filterBar;
 }
-function initCard(title = "Card Title", link = "card.png", desc = "Card Description") {
-  const card = el("a", {
-    className: "flex flex-col gap-2 focus:outline-none xl:mb-0 mb-8 rounded-[16px] border border-[#b4b7c81f] p-2 pb-4",
-    attrs: { href: "#" }
-  });
-  const cardImage = el("img", {
-    className: "focus:outline-none w-full h-56 object-cover rounded-[12px] border border-[#b4b7c81f]",
-    attrs: { src: link, alt: "person capturing an image", tabindex: "0" }
-  });
-  const cardContent = el("div", {
-    className: "flex flex-col gap-1 focus:outline-none pt-2"
-  });
-  const cardTitle = el("h3", {
-    className: "focus:outline-none text-sm font-medium text-zinc-950 dark:text-white",
-    text: title
-  });
-  const cardDescription = el("p", {
-    className: "focus:outline-none text-xs font-normal text-zinc-500 dark:text-zinc-400",
-    text: desc
-  });
-  cardContent.append(cardTitle, cardDescription);
-  card.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      card.click();
-    }
-  });
-  card.append(cardImage, cardContent);
-  return card;
+class Card {
+  constructor({ title, img, desc, href = "#" }) {
+    this.card = el("a", {
+      className: "group relative flex flex-col gap-2 focus:outline-none xl:mb-0 mb-8 rounded-[16px] border border-[#b4b7c81f] p-2 pb-4",
+      attrs: { href }
+    });
+    const imageWrapper = el("div", {
+      className: "relative w-full h-56 rounded-[12px] border border-[#b4b7c81f] overflow-hidden"
+    });
+    const imageShadow = el("div", {
+      className: "absolute inset-0 bg-black/40 hover:bg-black/30 transition-colors"
+    });
+    const image = el("img", {
+      className: "w-full h-full object-cover",
+      attrs: { src: img, alt: title, loading: "lazy" }
+    });
+    const content = el("div", {
+      className: "flex flex-col gap-1 pt-2"
+    });
+    const titleEl = el("h3", {
+      className: "text-sm font-medium text-zinc-950 dark:text-white",
+      text: title
+    });
+    const descEl = el("p", {
+      className: "text-xs font-normal text-zinc-500 dark:text-zinc-400",
+      text: desc
+    });
+    const tooltipWrapper = el("div", {
+      className: "absolute bottom-2 z-99 end-2 opacity-0 group-hover:opacity-100 transition"
+    });
+    const tooltip = el("div", {
+      className: "flex items-center gap-x-1 py-1 px-2 border border-layer-line text-layer-foreground rounded-lg"
+    });
+    const lensIcon = createIcon("M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z", {
+      width: 4,
+      height: 4,
+      viewBox: "0 0 24 24",
+      className: "w-4 h-4 min-w-4 min-h-4 stroke-current"
+    });
+    const tooltipView = el("span", { className: "text-xs", text: "View" });
+    tooltipWrapper.append(tooltip);
+    tooltip.append(lensIcon, tooltipView);
+    content.append(titleEl, descEl);
+    imageWrapper.append(image, imageShadow);
+    this.card.append(imageWrapper, content, tooltipWrapper);
+    this.card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") this.card.click();
+    });
+  }
+  render() {
+    return this.card;
+  }
 }
 function initGridCards() {
-  const card1 = initCard("Coding", "3.jpg", "Work hard, Play hard");
-  const card2 = initCard("Sing", "8.jpg", "I kissed a man and I like it");
-  const card3 = initCard("Rest", "7.jpg", "Work is not wolf, wolf is walk");
-  const card4 = initCard("Love yourself", "5.jpg");
-  const card5 = initCard("Training", "6.jpg");
-  const card6 = initCard("Be cool", "1.jpg", "Who I am today");
-  const card7 = initCard("Shine", "2.jpg", "Shine bright like a diamond");
+  const card1 = new Card({ title: "Coding", img: "3.jpg", desc: "Work hard, Play hard" });
+  const card2 = new Card({ title: "Sing", img: "8.jpg", desc: "I kissed a man and I like it" });
+  const card3 = new Card({ title: "Rest", img: "7.jpg", desc: "Work is not wolf, wolf is walk" });
+  const card4 = new Card({ title: "Love yourself", img: "5.jpg" });
+  const card5 = new Card({ title: "Training", img: "6.jpg" });
+  const card6 = new Card({ title: "Be cool", img: "1.jpg", desc: "Who I am today" });
+  const card8 = new Card({ title: "Shine", img: "2.jpg", desc: "Shine bright like a diamond" });
   const gridCards = el("div", {
     className: "grid grid-cols-1 h-full w-full md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
   });
-  gridCards.append(card1, card2, card3, card4, card5, card6, card7);
+  gridCards.append(card1.render(), card2.render(), card3.render(), card4.render(), card5.render(), card6.render(), card8.render());
   return gridCards;
 }
 function initDashboard() {
@@ -486,23 +521,104 @@ function initNotFound() {
   page.append(title);
   return page;
 }
+function initSignIn() {
+  const page = el("div", {
+    className: "h-full w-full flex justify-center items-center"
+  });
+  const modal = el("div", {
+    className: "py-12 px-12 rounded-2xl shadow-xl z-20 border border-gray-200"
+  });
+  const textWrapper = el("div");
+  const textTitle = el("h1", {
+    className: "text-3xl font-bold text-center mb-4",
+    text: "Create An Account"
+  });
+  const textDesc = el("p", {
+    className: "w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide",
+    text: "Create an account to enjoy all the services without any ads for free!"
+  });
+  const inputWrapper = el("div", {
+    className: "flex flex-col gap-4 space-y-4"
+  });
+  const inputEmail = el("input", {
+    className: "block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500",
+    attrs: {
+      type: "text",
+      placeholder: "Email Addres"
+    }
+  });
+  const inputPassword = el("input", {
+    className: "block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500",
+    attrs: {
+      type: "text",
+      placeholder: "Password"
+    }
+  });
+  const buttonWrapper = el("div", {
+    className: "text-center mt-6"
+  });
+  const button = el("button", {
+    className: "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg",
+    text: "Sign In"
+  });
+  const linkWrapper = el("p", {
+    className: "mt-4 text-sm"
+  });
+  const linkSpan = el("span", {
+    className: "underline cursor-pointer",
+    text: "Sign In"
+  });
+  el("div", {
+    className: "h-full w-full flex justify-center items-center",
+    html: `
+  <div class="py-12 px-12 border border-gray-200 rounded-2xl shadow-xl z-20">
+    <div>
+      <h1 class="text-3xl font-bold text-center mb-4 cursor-pointer">Create An Account</h1>
+      <p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Create an account to enjoy all the services without any ads for free!</p>
+    </div>
+    <div class="space-y-4">
+      <input type="text" placeholder="Email Addres" class="block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500" />
+      <input type="text" placeholder="Password" class="block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500" />
+    </div>
+    <div class="text-center mt-6">
+      <button class="w-full py-2 text-xl text-white bg-purple-400 rounded-lg hover:bg-purple-500 transition-all">Create Account</button>
+      <p class="mt-4 text-sm">Already Have An Account? <span class="underline  cursor-pointer"> Sign In</span></p>
+    </div>
+  </div>
+
+`
+  });
+  page.append(modal);
+  modal.append(textWrapper, inputWrapper, buttonWrapper);
+  textWrapper.append(textTitle, textDesc);
+  inputWrapper.append(inputEmail, inputPassword);
+  buttonWrapper.append(button, linkWrapper);
+  linkWrapper.append("Already Have An Account? ", linkSpan);
+  return page;
+}
 document.addEventListener("DOMContentLoaded", () => {
   const { main } = buildUI(document.body);
   router.init(
     [
       {
-        path: "/system/",
+        path: "/",
         component: () => initDashboard()
       },
       {
-        path: "/system/products",
+        path: "/products",
         component: () => initProducts()
       },
       {
         path: "*",
         component: () => initNotFound()
+      },
+      {
+        path: "/login",
+        component: () => initSignIn()
       }
     ],
     main
   );
+  console.log(window.navigator);
+  console.log(window.screen);
 });
