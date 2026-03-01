@@ -70,139 +70,129 @@ function createIcon(pathData, options = {}) {
   svg.appendChild(path);
   return svg;
 }
-function createSidebarElement(tag, id, icon, link = "#") {
-  const container = el("a", {
-    id: `${id}`,
-    className: "flex items-center w-full overflow-hidden h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 transition-all duration-300",
-    attrs: { href: link, "data-link": "true" }
-  });
-  const text = el("span", {
-    className: "ml-4 text-sm font-medium",
-    text: `${tag}`
-  });
-  container.append(icon, text);
-  return container;
-}
 function initSidebar() {
   const sidebar = el("aside", {
     id: "sidebar",
     className: "fixed flex flex-col h-full overflow-hidden w-16 top-0 bg-[#10101a] transition-all duration-300"
   });
-  const header = el("header", {
-    className: "px-2 overflow-hidden border-t border-[#b4b7c81f]"
-  });
-  const headerNav = el("nav", {
-    className: "flex flex-col items-center w-full   overflow-hidden"
-  });
-  const main = el("a", {
+  const gachiMain = el("a", {
     id: "logo",
-    className: "flex items-center my-2 gap-2 py-2 px-4 overflow-hidden",
+    className: "flex items-center my-2 gap-2 py-2 px-4 overflow-hidden dark:text-white",
     attrs: { href: "/", "data-link": "true" }
   });
-  const mainTitle = el("span", {
-    className: "ml-2 text-l font-bold",
-    text: "System"
+  const gachiTitle = el("span", {
+    className: "ml-2 text-l font-bold whitespace-nowrap text-zinc-950 dark:text-white",
+    text: "Gachi PractiCum"
   });
-  const mainLogo = createIcon(
-    "M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z",
-    {
-      width: 8,
-      height: 8,
-      viewBox: "0 0 20 20",
-      fill: "currentColor",
-      stroke: "none",
-      className: "w-8 h-8 min-w-8 fill-current"
-    }
-  );
-  main.append(mainLogo, mainTitle);
-  const dashLogo = createIcon(
-    "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
-    {
-      width: 6,
-      height: 6,
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: 2,
-      className: "w-6 h-6 min-w-6 min-h-6 stroke-current"
-    }
-  );
-  const searchLogo = createIcon("M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z", {
-    width: 6,
-    height: 6,
-    viewBox: "0 0 24 24",
-    className: "w-6 h-6 min-w-6 min-h-6 stroke-current"
+  const gachiLogo = el("span", {
+    className: "material-symbols-outlined text-[32px]! w-8 h-8 dark:text-white",
+    text: "sports_kabaddi"
   });
-  const insightsLogo = createIcon(
-    "M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z",
-    {
-      width: 6,
-      height: 6,
-      viewBox: "0 0 24 24",
-      className: "w-6 h-6 min-w-6 min-h-6 stroke-current"
-    }
-  );
-  const docsLogo = createIcon(
-    "M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2",
-    {
-      width: 6,
-      height: 6,
-      viewBox: "0 0 24 24",
-      className: "w-6 h-6 min-w-6 min-h-6 stroke-current"
-    }
-  );
-  const productsLogo = createIcon(
-    "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z",
-    {
-      width: 6,
-      height: 6,
-      viewBox: "0 0 24 24",
-      className: "w-6 h-6 min-w-6 min-h-6 stroke-current"
-    }
-  );
+  gachiMain.append(gachiLogo, gachiTitle);
+  const navigation = el("header", {
+    className: "flex flex-col items-center p-2 justify-between h-full overflow-hidden border-t border-[var(--color-border)]"
+  });
+  const headerNav = el("nav", {
+    className: "flex flex-col gap-2 items-center w-full overflow-hidden"
+  });
+  const footerNav = el("nav", {
+    className: "flex flex-col gap-2 items-center w-full overflow-hidden"
+  });
+  const dashLogo = el("span", {
+    className: "material-symbols-outlined text-2xl!",
+    text: "home"
+  });
+  const coursesLogo = el("span", {
+    className: "material-symbols-outlined text-2xl!",
+    text: "school"
+  });
+  const articlesLogo = el("span", {
+    className: "material-symbols-outlined text-2xl!",
+    text: "article"
+  });
+  const testsLogo = el("span", {
+    className: "material-symbols-outlined text-2xl!",
+    text: "quiz"
+  });
+  const libraryLogo = el("span", {
+    className: "material-symbols-outlined text-2xl!",
+    text: "bookmarks"
+  });
+  const supportLogo = el("span", {
+    className: "material-symbols-outlined text-2xl!",
+    text: "help"
+  });
+  const settingsLogo = el("span", {
+    className: "material-symbols-outlined text-2xl!",
+    text: "settings"
+  });
   const dashboard = createSidebarElement(
     "Dashboard",
     "dashboard",
     dashLogo,
     "/"
   );
-  const search = createSidebarElement("Search", "search", searchLogo, "/products");
-  const insights = createSidebarElement(
-    "Insights",
-    "insights",
-    insightsLogo,
-    "/products"
+  const course = createSidebarElement(
+    "Courses",
+    "courses",
+    coursesLogo,
+    "/courses"
   );
-  const docs = createSidebarElement("Docs", "docs", docsLogo, "/products");
-  const products = createSidebarElement(
-    "Products",
-    "products",
-    productsLogo,
-    "/products"
+  const articles = createSidebarElement(
+    "Articles",
+    "articles",
+    articlesLogo,
+    "/articles"
   );
-  headerNav.append(dashboard, search, insights, docs, products);
-  header.append(headerNav);
-  const footer = el("footer", {
-    className: "px-2 mt-auto mb-2 overflow-hidden border-t border-[#b4b7c81f]"
+  const tests = createSidebarElement("Tests", "tests", testsLogo, "/tests");
+  const library = createSidebarElement(
+    "My library",
+    "library",
+    libraryLogo,
+    "/library"
+  );
+  const support = createSidebarElement(
+    "Support",
+    "support",
+    supportLogo,
+    "/support"
+  );
+  const settings = createSidebarElement(
+    "Settings",
+    "settings",
+    settingsLogo,
+    "/settings"
+  );
+  headerNav.append(dashboard, course, articles, tests, library);
+  footerNav.append(support, settings);
+  navigation.append(headerNav, footerNav);
+  const profile = el("footer", {
+    className: "px-2 mt-auto mb-2 overflow-hidden border-t border-[var(--color-border)]"
   });
-  const footerContainer = el("a", {
+  const profileWrapper = el("a", {
     id: "avatar",
-    className: "flex items-center gap-3 my-3 overflow-hidden rounded-lg hover:text-gray-300 transition-all duration-300",
+    className: "flex items-center gap-3 mt-4 mb-8 overflow-hidden rounded-lg hover:text-gray-300 transition-all duration-300",
     attrs: { href: "/login", "data-link": "true" }
   });
   const avatarText = el("span", {
     className: "min-w-0"
   });
-  const avatarName = el("span", { text: "Pepe Frog", className: "block truncate text-l font-medium text-zinc-950 dark:text-white mb-1" });
-  const avatarRole = el("span", { text: "Admin", className: "block truncate text-m font-normal text-zinc-500 dark:text-zinc-400" });
+  const avatarName = el("span", {
+    text: "Pepe Frog",
+    className: "block truncate text-l font-medium text-zinc-950 dark:text-white mb-1"
+  });
+  const avatarRole = el("span", {
+    text: "Admin",
+    className: "block truncate text-m font-normal text-zinc-500 dark:text-zinc-400"
+  });
   avatarText.append(avatarName, avatarRole);
   const avatar = el("img", {
     className: "rounded-full size-10 ml-1 inline-grid shrink-0 align-middle",
     attrs: { src: "pepe-mini.jpg" }
   });
-  footerContainer.append(avatar, avatarText);
-  footer.append(footerContainer);
-  sidebar.append(main, header, footer);
+  profileWrapper.append(avatar, avatarText);
+  profile.append(profileWrapper);
+  sidebar.append(gachiMain, navigation, profile);
   sidebar.addEventListener("mouseenter", () => {
     window.dispatchEvent(new CustomEvent("sidebar:open"));
     sidebar.classList.remove("w-16");
@@ -213,6 +203,19 @@ function initSidebar() {
     sidebar.classList.remove("w-64");
     sidebar.classList.add("w-16");
   });
+  function createSidebarElement(tag, id, icon, link = "#") {
+    const container = el("a", {
+      id: `${id}`,
+      className: "flex items-center w-full overflow-hidden h-12 px-3 rounded hover:bg-[var(--color-primary)] hover:text-gray-300 transition-all duration-300",
+      attrs: { href: link, "data-link": "true" }
+    });
+    const text = el("span", {
+      className: "ml-4 text-m font-medium whitespace-nowrap",
+      text: `${tag}`
+    });
+    container.append(icon, text);
+    return container;
+  }
   return sidebar;
 }
 function initPage() {
@@ -221,7 +224,7 @@ function initPage() {
     className: "flex flex-col h-full w-full transition-all duration-300 p-2 pl-16"
   });
   const mainWrapper = el("div", {
-    className: "flex flex-col flex-1 items-center bg-[#171721] h-full min-h-[calc(100dvh-16px)] p-2 rounded-lg overflow-y-auto border border-[#b4b7c81f]"
+    className: "flex flex-col flex-1 items-center bg-[#171721] h-full min-h-[calc(100dvh-16px)] p-2 rounded-lg overflow-y-auto border border-[var(--color-border)]"
   });
   const content = el("div", {
     id: "page-content",
@@ -296,14 +299,14 @@ function initSearch() {
     className: "relative flex items-center h-10 w-full rounded-lg bg-[#171721]"
   });
   const searchInput = el("input", {
-    className: "flex-1 h-10 px-3 rounded-lg bg-[#171721] border border-[#b4b7c81f] text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-[#b4b7c81f]",
+    className: "flex-1 h-10 px-3 rounded-lg bg-[#171721] border border-[var(--color-border)] text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-border)]",
     attrs: { type: "text", placeholder: "Search..." }
   });
   const searchIcon = el("span", {
     className: "absolute inset-y-0 right-2 grid w-8 place-content-center"
   });
   const searchButton = el("button", {
-    className: "rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800",
+    className: "rounded-full p-1.5 text-[var(--color-primary)] transition-colors hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800",
     attrs: { type: "button" }
   });
   const searchSVG = createIcon(
@@ -324,13 +327,29 @@ function initSearch() {
 }
 function initHeader() {
   const header = el("div", {
-    className: "flex items-center justify-center min-h-12 h-12 py-2 w-full"
+    className: "flex items-center justify-center min-h-12 h-12 py-2 mb-4 w-full"
   });
   const headerContent = el("nav", {
     className: "flex items-center justify-between w-full mx-3 max-w-225 gap-2"
   });
   const search = initSearch();
-  headerContent.append(search);
+  const notificationsWrapper = el("div", {
+    className: "rounded-full size-10"
+  });
+  const notifications = el("button", {
+    className: "relative rounded-full w-10! size-10 max-size-10 min-size-10 text-[var(--color-primary)] transition-colors border border-[var(--color-border)] hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800",
+    attrs: { type: "button" }
+  });
+  const notificationsIcon = el("span", {
+    className: "flex items-center justify-center p-1 material-symbols-outlined text-xl! size-full text-center",
+    text: "notifications"
+  });
+  const badge = el("span", {
+    className: "absolute top-1 right-1 inline-flex items-center justify-center w-2 h-2 text-sm font-bold text-white bg-red-500 rounded-full transform translate-x-1/4 -translate-y-1/4"
+  });
+  notifications.append(notificationsIcon, badge);
+  notificationsWrapper.append(notifications);
+  headerContent.append(search, notificationsWrapper);
   header.append(headerContent);
   return header;
 }
@@ -350,7 +369,7 @@ function initFilterBar() {
     text: "Filter by:"
   });
   const mostRecentButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-gray-700 pl-4 pr-3 py-2 transition-all"
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
   });
   const mostRecentText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
@@ -361,14 +380,14 @@ function initFilterBar() {
     text: "expand_more"
   });
   const highestRatedButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-gray-700 pl-4 pr-3 py-2 transition-all"
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
   });
   const highestRatedText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
     text: "Highest Rated"
   });
   const verifiedTradersButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-gray-700 focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-gray-700 pl-4 pr-3 py-2 transition-all"
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
   });
   const verifiedTradersText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
@@ -379,7 +398,7 @@ function initFilterBar() {
     text: "check_circle"
   });
   const withPhotosButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-gray-700 focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-gray-700 pl-4 pr-3 py-2 transition-all"
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
   });
   const withPhotosText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
@@ -390,58 +409,59 @@ function initFilterBar() {
     text: "image"
   });
   withPhotosButton.append(withPhotosText, imageIcon);
-  verifiedTradersButton.append(verifiedTradersText, checkCircleIcon, expandMoreIcon);
+  verifiedTradersButton.append(
+    verifiedTradersText,
+    checkCircleIcon,
+    expandMoreIcon
+  );
   mostRecentButton.append(mostRecentText, expandMoreIcon);
   highestRatedButton.append(highestRatedText, expandMoreIcon);
   filter.append(tuneIcon, filterText);
-  filterBar.append(filter, mostRecentButton, highestRatedButton, verifiedTradersButton, withPhotosButton);
+  filterBar.append(
+    filter,
+    mostRecentButton,
+    highestRatedButton,
+    verifiedTradersButton,
+    withPhotosButton
+  );
   return filterBar;
 }
 class Card {
   constructor({ title, img, desc, href = "#" }) {
-    this.card = el("a", {
-      className: "group relative flex flex-col gap-2 focus:outline-none xl:mb-0 mb-8 rounded-[16px] border border-[#b4b7c81f] p-2 pb-4",
-      attrs: { href }
+    this.card = el("article", {
+      className: "relative overflow-hidden aspect-1/1 min-h-50 flex-shrink-0 rounded-[16px] border border-[var(--color-border)] group"
     });
-    const imageWrapper = el("div", {
-      className: "relative w-full h-56 rounded-[12px] border border-[#b4b7c81f] overflow-hidden"
-    });
-    const imageShadow = el("div", {
-      className: "absolute inset-0 bg-black/40 hover:bg-black/30 transition-colors"
+    const imageWrapper = el("picture", {
+      className: " absolute inset-0 transition-transform duration-500 hover:scale-110"
     });
     const image = el("img", {
-      className: "w-full h-full object-cover",
+      className: "w-full h-full object-cover transition-transform duration-500 hover:scale-110",
       attrs: { src: img, alt: title, loading: "lazy" }
     });
-    const content = el("div", {
-      className: "flex flex-col gap-1 pt-2"
+    const gradientOverlay = el("div", {
+      className: "pointer-events-none absolute inset-x-0 top-0 h-full rounded-[16px]",
+      attrs: { "style": "backdrop-filter: blur(30px); background: rgba(225, 225, 225, 0.05); -webkit-mask-image: linear-gradient(rgb(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0) 70%); " }
+    });
+    const contentWrapper = el("a", {
+      className: "relative z-[1] grid grid-rows-[1fr_auto] h-full w-full p-4 items-end cursor-pointer focus:outline-none",
+      attrs: { href }
+    });
+    const textBlock = el("div", {
+      className: "space-y-1"
     });
     const titleEl = el("h3", {
-      className: "text-sm font-medium text-zinc-950 dark:text-white",
+      className: "text-sm font-medium text-white",
       text: title
     });
     const descEl = el("p", {
-      className: "text-xs font-normal text-zinc-500 dark:text-zinc-400",
+      className: "text-xs font-normal text-zinc-200",
       text: desc
     });
-    const tooltipWrapper = el("div", {
-      className: "absolute bottom-2 z-99 end-2 opacity-0 group-hover:opacity-100 transition"
-    });
-    const tooltip = el("div", {
-      className: "flex items-center gap-x-1 py-1 px-2 border border-layer-line text-layer-foreground rounded-lg"
-    });
-    const lensIcon = createIcon("M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z", {
-      width: 4,
-      height: 4,
-      viewBox: "0 0 24 24",
-      className: "w-4 h-4 min-w-4 min-h-4 stroke-current"
-    });
-    const tooltipView = el("span", { className: "text-xs", text: "View" });
-    tooltipWrapper.append(tooltip);
-    tooltip.append(lensIcon, tooltipView);
-    content.append(titleEl, descEl);
-    imageWrapper.append(image, imageShadow);
-    this.card.append(imageWrapper, content, tooltipWrapper);
+    textBlock.append(titleEl, descEl);
+    contentWrapper.append(textBlock);
+    imageWrapper.append(image);
+    this.card.append(imageWrapper, gradientOverlay, contentWrapper);
+    this.card.tabIndex = 0;
     this.card.addEventListener("keydown", (e) => {
       if (e.key === "Enter") this.card.click();
     });
@@ -451,17 +471,22 @@ class Card {
   }
 }
 function initGridCards() {
-  const card1 = new Card({ title: "Coding", img: "3.jpg", desc: "Work hard, Play hard" });
-  const card2 = new Card({ title: "Sing", img: "8.jpg", desc: "I kissed a man and I like it" });
-  const card3 = new Card({ title: "Rest", img: "7.jpg", desc: "Work is not wolf, wolf is walk" });
-  const card4 = new Card({ title: "Love yourself", img: "5.jpg" });
-  const card5 = new Card({ title: "Training", img: "6.jpg" });
-  const card6 = new Card({ title: "Be cool", img: "1.jpg", desc: "Who I am today" });
-  const card8 = new Card({ title: "Shine", img: "2.jpg", desc: "Shine bright like a diamond" });
+  const py = new Card({ title: "Python-developer + AI", img: "py.png", desc: "Work hard, Play hard" });
+  const js = new Card({ title: "Fullstack JavaScript developer", img: "js.png", desc: "I kissed a man and I like it" });
+  const cpp = new Card({ title: "C++ developer", img: "c++.png", desc: "Work is not wolf, wolf is walk" });
+  const oneC = new Card({ title: "1C developer", img: "1c.png" });
+  const cyber = new Card({ title: "Cyber Security + AI", img: "cyber.png" });
+  const dataAn = new Card({ title: "Data Analyst", img: "data_an.png" });
+  const designAI = new Card({ title: "AI Creator", img: "design_ai.png", desc: "Who I am today" });
+  const designFace = new Card({ title: "Makeup Artist", img: "design_face.png", desc: "Shine bright like a diamond" });
+  const photoItem = new Card({ title: "Item Photographer", img: "design_item.png", desc: "Shine bright like a diamond" });
+  const devAI = new Card({ title: "AI Developer", img: "dev_ai.png", desc: "Shine bright like a diamond" });
+  const fashion = new Card({ title: "Fashion Designer", img: "fashion.png", desc: "Shine bright like a diamond" });
+  const graph = new Card({ title: "Graphic Designer", img: "graph.png", desc: "Shine bright like a diamond" });
   const gridCards = el("div", {
-    className: "grid grid-cols-1 h-full w-full md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
+    className: "flex overflow-x-auto scroll-smooth no-scrollbar h-full w-full gap-4 mt-4"
   });
-  gridCards.append(card1.render(), card2.render(), card3.render(), card4.render(), card5.render(), card6.render(), card8.render());
+  gridCards.append(py.render(), js.render(), cpp.render(), oneC.render(), cyber.render(), dataAn.render(), designAI.render(), designFace.render(), photoItem.render(), devAI.render(), fashion.render(), graph.render());
   return gridCards;
 }
 function initDashboard() {
@@ -478,7 +503,7 @@ function initDashboard() {
     className: "flex flex-1 flex-col items-start justify-start mx-3 max-w-225 gap-2"
   });
   const pageTitle = el("h1", {
-    text: "Welcome to the Dashboard",
+    text: "All courses",
     className: "text-2xl font-bold text-zinc-950 dark:text-white"
   });
   pageContent.append(pageTitle, filterBar, gridCards);
@@ -486,9 +511,9 @@ function initDashboard() {
   dashboard.append(header, page);
   return dashboard;
 }
-function initProducts() {
+function initCourses() {
   const header = initHeader();
-  const products = el("div", {
+  const courses = el("div", {
     className: "flex flex-col flex-1 items-center h-full w-full"
   });
   const page = el("div", {
@@ -507,8 +532,8 @@ function initProducts() {
   });
   pageContent.append(pageTitle, description);
   page.append(pageContent);
-  products.append(header, page);
-  return products;
+  courses.append(header, page);
+  return courses;
 }
 function initNotFound() {
   const page = el("div", {
@@ -534,7 +559,7 @@ function initSignIn() {
     text: "Create An Account"
   });
   const textDesc = el("p", {
-    className: "w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide",
+    className: "w-80 text-center text-sm mb-8 font-semibold text-[var(--color-primary)] tracking-wide",
     text: "Create an account to enjoy all the services without any ads for free!"
   });
   const inputWrapper = el("div", {
@@ -574,7 +599,7 @@ function initSignIn() {
   <div class="py-12 px-12 border border-gray-200 rounded-2xl shadow-xl z-20">
     <div>
       <h1 class="text-3xl font-bold text-center mb-4 cursor-pointer">Create An Account</h1>
-      <p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Create an account to enjoy all the services without any ads for free!</p>
+      <p class="w-80 text-center text-sm mb-8 font-semibold text-[var(--color-primary)] tracking-wide cursor-pointer">Create an account to enjoy all the services without any ads for free!</p>
     </div>
     <div class="space-y-4">
       <input type="text" placeholder="Email Addres" class="block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500" />
@@ -605,8 +630,8 @@ document.addEventListener("DOMContentLoaded", () => {
         component: () => initDashboard()
       },
       {
-        path: "/products",
-        component: () => initProducts()
+        path: "/courses",
+        component: () => initCourses()
       },
       {
         path: "*",
@@ -619,6 +644,4 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
     main
   );
-  console.log(window.navigator);
-  console.log(window.screen);
 });
