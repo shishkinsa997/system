@@ -30,5 +30,5 @@ export function initPage() {
     page.classList.add("pl-16");
   });
 
-  return { page, content };
+  return page;
 }
