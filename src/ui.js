@@ -8,9 +8,10 @@ function buildUI(root) {
     className: "fixed overflow-hidden left-0 top-0 min-w-screen h-dvh bg-[#10101a] text-gray-400",
   });
   const aside = initSidebar();
-  const page = initPage();
+  const { page, content } = initPage();
   app.append(aside, page);
   root.appendChild(app);
+  return { main: content };
 }
 
 export { buildUI };
