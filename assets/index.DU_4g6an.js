@@ -51,7 +51,10 @@ function createIcon(pathData, options = {}) {
     className = ""
   } = options;
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("class", className || `w-${width} h-${height} ${fill === "currentColor" ? "fill-current" : "stroke-current"}`);
+  svg.setAttribute(
+    "class",
+    className || `w-${width} h-${height} ${fill === "currentColor" ? "fill-current" : "stroke-current"}`
+  );
   if (!className) {
     svg.setAttribute("width", width * 4);
     svg.setAttribute("height", height * 4);
@@ -202,6 +205,21 @@ function initSidebar() {
     window.dispatchEvent(new CustomEvent("sidebar:close"));
     sidebar.classList.remove("w-64");
     sidebar.classList.add("w-16");
+  });
+  document.addEventListener("click", (e) => {
+    const sliderElements = document.querySelectorAll("#sidebar nav a");
+    const link = e.target.closest("a");
+    if (!link) return;
+    e.preventDefault();
+    history.pushState(null, "", link.href);
+    const linkPath = window.location.pathname;
+    const sliderElement = document.getElementById(`${linkPath.slice(1)}`);
+    sliderElements.forEach((el2) => {
+      el2.classList.remove("bg-[var(--color-primary)]");
+    });
+    if (sliderElement) {
+      sliderElement.classList.add("bg-[var(--color-primary)]");
+    }
   });
   function createSidebarElement(tag, id, icon, link = "#") {
     const container = el("a", {
@@ -797,26 +815,6 @@ function initSignIn() {
   const linkSpan = el("span", {
     className: "underline cursor-pointer",
     text: "Sign In"
-  });
-  el("div", {
-    className: "h-full w-full flex justify-center items-center",
-    html: `
-  <div class="py-12 px-12 border border-gray-200 rounded-2xl shadow-xl z-20">
-    <div>
-      <h1 class="text-3xl font-bold text-center mb-4 cursor-pointer">Create An Account</h1>
-      <p class="w-80 text-center text-sm mb-8 font-semibold text-[var(--color-primary)] tracking-wide cursor-pointer">Create an account to enjoy all the services without any ads for free!</p>
-    </div>
-    <div class="space-y-4">
-      <input type="text" placeholder="Email Addres" class="block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500" />
-      <input type="text" placeholder="Password" class="block text-sm py-3 px-4 rounded-lg w-full border outline-purple-500" />
-    </div>
-    <div class="text-center mt-6">
-      <button class="w-full py-2 text-xl text-white bg-purple-400 rounded-lg hover:bg-purple-500 transition-all">Create Account</button>
-      <p class="mt-4 text-sm">Already Have An Account? <span class="underline  cursor-pointer"> Sign In</span></p>
-    </div>
-  </div>
-
-`
   });
   page.append(modal);
   modal.append(textWrapper, inputWrapper, buttonWrapper);
