@@ -15,13 +15,19 @@ export function initSidebar() {
   });
   const gachiTitle = el("span", {
     className:
-      "ml-2 text-l font-bold whitespace-nowrap text-zinc-950 dark:text-white",
+      "ml-2 text-l leading-6 flex flex-col font-bold whitespace-nowrap text-zinc-950 dark:text-white",
     text: "Gachi PractiCum",
+  });
+  const gachiSubtitle = el("span", {
+    className:
+      "text-[10px] leading-2 whitespace-nowrap text-zinc-500 dark:text-zinc-400",
+    text: "Premium Learning",
   });
   const gachiLogo = el("span", {
     className: "material-symbols-outlined text-[32px]! w-8 h-8 dark:text-white",
     text: "sports_kabaddi",
   });
+  gachiTitle.append(gachiSubtitle);
   gachiMain.append(gachiLogo, gachiTitle);
 
   const navigation = el("header", {
@@ -70,7 +76,7 @@ export function initSidebar() {
     dashLogo,
     "/dashboard",
   );
-  const course = createSidebarElement(
+  const courses = createSidebarElement(
     "Courses",
     "courses",
     coursesLogo,
@@ -102,7 +108,7 @@ export function initSidebar() {
     "/settings",
   );
 
-  headerNav.append(dashboard, course, articles, tests, library);
+  headerNav.append(dashboard, courses, articles, tests, library);
   footerNav.append(support, settings);
   navigation.append(headerNav, footerNav);
 
@@ -152,6 +158,8 @@ export function initSidebar() {
     sidebar.classList.add("w-16");
   });
 
+  courses.classList.add("bg-[var(--color-primary)]");
+
   document.addEventListener("click", (e) => {
     const sliderElements = document.querySelectorAll("#sidebar nav a");
     const link = e.target.closest("a");
@@ -159,12 +167,15 @@ export function initSidebar() {
     e.preventDefault();
     history.pushState(null, "", link.href);
     const linkPath = window.location.pathname;
-    const sliderElement = document.getElementById(`${linkPath.slice(1)}`);
+    const sliderElement = document.getElementById(`${linkPath.slice(1)}`) || 0;
+
     sliderElements.forEach((el) => {
       el.classList.remove("bg-[var(--color-primary)]");
     });
     if (sliderElement) {
       sliderElement.classList.add("bg-[var(--color-primary)]");
+    } else if (linkPath === "/") {
+      sliderElements[1].classList.add("bg-[var(--color-primary)]");
     }
   });
 
