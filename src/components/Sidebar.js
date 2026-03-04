@@ -152,6 +152,22 @@ export function initSidebar() {
     sidebar.classList.add("w-16");
   });
 
+  document.addEventListener("click", (e) => {
+    const sliderElements = document.querySelectorAll("#sidebar nav a");
+    const link = e.target.closest("a");
+    if (!link) return;
+    e.preventDefault();
+    history.pushState(null, "", link.href);
+    const linkPath = window.location.pathname;
+    const sliderElement = document.getElementById(`${linkPath.slice(1)}`);
+    sliderElements.forEach((el) => {
+      el.classList.remove("bg-[var(--color-primary)]");
+    });
+    if (sliderElement) {
+      sliderElement.classList.add("bg-[var(--color-primary)]");
+    }
+  });
+
   function createSidebarElement(tag, id, icon, link = "#") {
     const container = el("a", {
       id: `${id}`,
