@@ -1,24 +1,31 @@
 import { el } from "../utils.js";
 
+const images = import.meta.glob("../assets/img/*", { eager: true, as: "url" });
+
 export class Card {
   constructor({ title, img, desc, href = "#" }) {
     this.card = el("article", {
       className:
-        "relative overflow-hidden aspect-square min-w-72 rounded-[16px] border border-[var(--color-border)] group"    });
+        "relative overflow-hidden aspect-square min-w-72 rounded-[16px] border border-[var(--color-border)] group",
+    });
 
     const imageWrapper = el("picture", {
       className: "absolute inset-0",
     });
 
     const image = el("img", {
-      className: "transition-transform duration-500 hover:scale-110 w-full h-full object-cover transition-transform duration-500 hover:scale-110",
-      attrs: { src: img, alt: title, loading: "lazy" },
+      className:
+        "transition-transform duration-500 hover:scale-110 w-full h-full object-cover transition-transform duration-500 hover:scale-110",
+      attrs: { src: images[`../assets/img/${img}`], alt: title, loading: "lazy" },
     });
 
     const gradientOverlay = el("div", {
       className:
         "pointer-events-none absolute inset-x-0 top-0 h-full rounded-[16px]",
-      attrs: { "style": "backdrop-filter: blur(30px); background: rgba(225, 225, 225, 0.05); -webkit-mask-image: linear-gradient(rgb(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0) 70%); " },
+      attrs: {
+        style:
+          "backdrop-filter: blur(30px); background: rgba(225, 225, 225, 0.05); -webkit-mask-image: linear-gradient(rgb(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0) 70%); ",
+      },
     });
 
     const contentWrapper = el("a", {
