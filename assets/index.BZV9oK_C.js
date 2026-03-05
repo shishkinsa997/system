@@ -311,8 +311,8 @@ function buildUI(root) {
   root.appendChild(app);
   return { main: content };
 }
-const __vite_glob_0_0 = "data:application/json;base64,ew0KICAic2lkZS50aXRsZSI6ICJHYWNoaSBQcmFjdGljdW0iLA0KICAic2lkZS5zdWJ0aXRsZSI6ICJQcmVtaXVtIExlYXJuaW5nIiwNCiAgInNpZGUuZGFzaGJvYXJkIjogIkRhc2hib2FyZCIsDQogICJzaWRlLmNvdXJzZXMiOiAiQ291cnNlcyIsDQogICJzaWRlLmFydGljbGVzIjogIkFydGljbGVzIiwNCiAgInNpZGUuc3VwcG9ydCI6ICJTdXBwb3J0IiwNCiAgInNpZGUuc2V0dGluZ3MiOiAiU2V0dGluZ3MiLA0KICAic2lkZS5yb2xlIjogIkFkbWluIiwNCg0KICAiZGFzaGJvYXJkLnRpdGxlIjogIkRhc2hib2FyZCIsDQogICJkYXNoYm9hcmQuZGVzY3JpcHRpb24iOiAiSGVyZSB3aWxsIGJlIHRoZSBkYXNoYm9hcmQgY29udGVudC4iLA0KDQogICJjb3Vyc2VzLnRpdGxlIjogIkFsbCBjb3Vyc2VzIiwNCiAgImNvdXJzZXMucHJvZ3JhbW1pbmciOiAiUHJvZ3JhbW1pbmciLA0KICAiY291cnNlcy5kZXNpZ24iOiAiRGVzaWduIiwNCiAgImNvdXJzZXMubWFuYWdlbWVudCI6ICJNYW5hZ2VtZW50IiwNCg0KICAiYXJ0aWNsZXMudGl0bGUiOiAiQXJ0aWNsZXMgYmFzZSIsDQogICJhcnRpY2xlcy5maWx0ZXJCeSI6ICJGaWx0ZXIgYnk6IiwNCiAgImFydGljbGVzLnZlcmlmaWVkIjogIlZlcmlmaWVkIiwNCiAgImFydGljbGVzLm1vc3RSZWNlbnQiOiAiTW9zdCBSZWNlbnQiLA0KICAiYXJ0aWNsZXMuaGlnaGVzdFJhdGVkIjogIkhpZ2hlc3QgUmF0ZWQiLA0KICAiYXJ0aWNsZXMud2l0aFBob3RvcyI6ICJXaXRoIFBob3RvIg0KfQ==";
-const __vite_glob_0_1 = "data:application/json;base64,ew0KICAic2lkZS50aXRsZSI6ICLQk9Cw0YfQuCDQn9GA0LDQutGC0LjQutGD0LwiLA0KICAic2lkZS5zdWJ0aXRsZSI6ICLQn9GA0LXQvNC40LDQu9GM0L3QvtC1INC+0LHRg9GH0LXQvdC40LUiLA0KICAic2lkZS5kYXNoYm9hcmQiOiAi0JzQvtGPINC00L7RgdC60LAiLA0KICAic2lkZS5jb3Vyc2VzIjogItCa0YPRgNGB0YsiLA0KICAic2lkZS5hcnRpY2xlcyI6ICLQodGC0LDRgtGM0LgiLA0KICAic2lkZS5zdXBwb3J0IjogItCf0L7QtNC00LXRgNC20LrQsCIsDQogICJzaWRlLnNldHRpbmdzIjogItCd0LDRgdGC0YDQvtC50LrQuCIsDQogICJzaWRlLnJvbGUiOiAi0JDQtNC80LjQvSIsDQoNCiAgImRhc2hib2FyZC50aXRsZSI6ICLQnNC+0Y8g0LTQvtGB0LrQsCIsDQogICJkYXNoYm9hcmQuZGVzY3JpcHRpb24iOiAi0JfQtNC10YHRjCDQsdGD0LTQtdGCINC60L7QvdGC0LXQvdGCLiIsDQoNCiAgImNvdXJzZXMudGl0bGUiOiAi0JLRgdC1INC60YPRgNGB0YsiLA0KICAiY291cnNlcy5wcm9ncmFtbWluZyI6ICLQn9GA0L7Qs9GA0LDQvNC80LjRgNC+0LLQsNC90LjQtSIsDQogICJjb3Vyc2VzLmRlc2lnbiI6ICLQlNC40LfQsNC50L0iLA0KICAiY291cnNlcy5tYW5hZ2VtZW50IjogItCc0LXQvdC10LTQttC80LXQvdGCIiwNCg0KICAiYXJ0aWNsZXMudGl0bGUiOiAi0KHRgtCw0YLRjNC4IiwNCiAgImFydGljbGVzLmZpbHRlckJ5IjogItCk0LjQu9GM0YLRgDoiLA0KICAiYXJ0aWNsZXMudmVyaWZpZWQiOiAi0J7RhNC40YbQuNCw0LvRjNC90YvQtSIsDQogICJhcnRpY2xlcy5tb3N0UmVjZW50IjogItCd0LXQtNCw0LLQvdC40LUiLA0KICAiYXJ0aWNsZXMuaGlnaGVzdFJhdGVkIjogItCf0L4g0YDQtdC4zIbRgtC40L3Qs9GDIiwNCiAgImFydGljbGVzLndpdGhQaG90b3MiOiAi0KEg0YTQvtGC0L4iDQoNCn0=";
+const __vite_glob_0_0 = "data:application/json;base64,ew0KICAic2lkZS50aXRsZSI6ICJHYWNoaSBQcmFjdGljdW0iLA0KICAic2lkZS5zdWJ0aXRsZSI6ICJQcmVtaXVtIExlYXJuaW5nIiwNCiAgInNpZGUuZGFzaGJvYXJkIjogIkRhc2hib2FyZCIsDQogICJzaWRlLmNvdXJzZXMiOiAiQ291cnNlcyIsDQogICJzaWRlLmFydGljbGVzIjogIkFydGljbGVzIiwNCiAgInNpZGUuc3VwcG9ydCI6ICJTdXBwb3J0IiwNCiAgInNpZGUuc2V0dGluZ3MiOiAiU2V0dGluZ3MiLA0KICAic2lkZS5yb2xlIjogIkFkbWluIiwNCg0KICAiZGFzaGJvYXJkLnRpdGxlIjogIkRhc2hib2FyZCIsDQogICJkYXNoYm9hcmQuZGVzY3JpcHRpb24iOiAiV2VsY29tZSBiYWNrLCBQZXBlISBIZXJlJ3MgeW91ciBwcm9ncmVzcyBmb3IgdG9kYXkuIiwNCg0KICAiY291cnNlcy50aXRsZSI6ICJBbGwgY291cnNlcyIsDQogICJjb3Vyc2VzLnByb2dyYW1taW5nIjogIlByb2dyYW1taW5nIiwNCiAgImNvdXJzZXMuZGVzaWduIjogIkRlc2lnbiIsDQogICJjb3Vyc2VzLm1hbmFnZW1lbnQiOiAiTWFuYWdlbWVudCIsDQoNCiAgImFydGljbGVzLnRpdGxlIjogIkFydGljbGVzIGJhc2UiLA0KICAiYXJ0aWNsZXMuZmlsdGVyQnkiOiAiRmlsdGVyIGJ5OiIsDQogICJhcnRpY2xlcy52ZXJpZmllZCI6ICJWZXJpZmllZCIsDQogICJhcnRpY2xlcy5tb3N0UmVjZW50IjogIk1vc3QgUmVjZW50IiwNCiAgImFydGljbGVzLmhpZ2hlc3RSYXRlZCI6ICJIaWdoZXN0IFJhdGVkIiwNCiAgImFydGljbGVzLndpdGhQaG90b3MiOiAiV2l0aCBQaG90byINCn0=";
+const __vite_glob_0_1 = "data:application/json;base64,ew0KICAic2lkZS50aXRsZSI6ICLQk9Cw0YfQuCDQn9GA0LDQutGC0LjQutGD0LwiLA0KICAic2lkZS5zdWJ0aXRsZSI6ICLQn9GA0LXQvNC40LDQu9GM0L3QvtC1INC+0LHRg9GH0LXQvdC40LUiLA0KICAic2lkZS5kYXNoYm9hcmQiOiAi0JzQvtGPINC00L7RgdC60LAiLA0KICAic2lkZS5jb3Vyc2VzIjogItCa0YPRgNGB0YsiLA0KICAic2lkZS5hcnRpY2xlcyI6ICLQodGC0LDRgtGM0LgiLA0KICAic2lkZS5zdXBwb3J0IjogItCf0L7QtNC00LXRgNC20LrQsCIsDQogICJzaWRlLnNldHRpbmdzIjogItCd0LDRgdGC0YDQvtC50LrQuCIsDQogICJzaWRlLnJvbGUiOiAi0JDQtNC80LjQvSIsDQoNCiAgImRhc2hib2FyZC50aXRsZSI6ICLQnNC+0Y8g0LTQvtGB0LrQsCIsDQogICJkYXNoYm9hcmQuZGVzY3JpcHRpb24iOiAi0KEg0LLQvtC30LLRgNCw0YnQtdC90LjQtdC8IFBlcGUhINCS0L7RgiDQstCw0Ygg0L/RgNC+0LPRgNC10YHRgSDQt9CwINGB0LXQs9C+0LTQvdGPLiIsDQoNCiAgImNvdXJzZXMudGl0bGUiOiAi0JLRgdC1INC60YPRgNGB0YsiLA0KICAiY291cnNlcy5wcm9ncmFtbWluZyI6ICLQn9GA0L7Qs9GA0LDQvNC80LjRgNC+0LLQsNC90LjQtSIsDQogICJjb3Vyc2VzLmRlc2lnbiI6ICLQlNC40LfQsNC50L0iLA0KICAiY291cnNlcy5tYW5hZ2VtZW50IjogItCc0LXQvdC10LTQttC80LXQvdGCIiwNCg0KICAiYXJ0aWNsZXMudGl0bGUiOiAi0KHRgtCw0YLRjNC4IiwNCiAgImFydGljbGVzLmZpbHRlckJ5IjogItCk0LjQu9GM0YLRgDoiLA0KICAiYXJ0aWNsZXMudmVyaWZpZWQiOiAi0J7RhNC40YbQuNCw0LvRjNC90YvQtSIsDQogICJhcnRpY2xlcy5tb3N0UmVjZW50IjogItCd0LXQtNCw0LLQvdC40LUiLA0KICAiYXJ0aWNsZXMuaGlnaGVzdFJhdGVkIjogItCf0L4g0YDQtdC4zIbRgtC40L3Qs9GDIiwNCiAgImFydGljbGVzLndpdGhQaG90b3MiOiAi0KEg0YTQvtGC0L4iDQoNCn0=";
 const DEFAULT_LANG = "en";
 let currentDict = {};
 async function loadLanguage(lang) {
@@ -577,13 +577,128 @@ function initDashboard() {
     className: "text-4xl font-bold text-zinc-950 dark:text-white"
   });
   const description = el("p", {
-    text: "Here will be the dashboard content.",
+    text: "Welcome back, Pepe! Here's your progress for today.",
     i18n: "dashboard.description",
     className: "text-sm text-gray-400"
   });
-  pageContent.append(pageTitle, description);
+  const progress = el("div", {
+    className: "flex overflow-x-auto no-scrollbar lg:grid lg:grid-cols-4 gap-4 w-full mt-6 "
+  });
+  const courses = createProgressItem(
+    "Courses in progress",
+    "3",
+    "play_circle",
+    "bg-blue-500/10 text-blue-500"
+  );
+  const tests = createProgressItem(
+    "Tests completed",
+    "12",
+    "task_alt",
+    "bg-purple-500/10 text-purple-500"
+  );
+  const streak = createProgressItem(
+    "Days Streak",
+    "27",
+    "local_fire_department",
+    "bg-amber-500/10 text-amber-500"
+  );
+  const exp = createProgressItem(
+    "XP earned",
+    "2,450",
+    "bolt",
+    "bg-green-500/10 text-green-500"
+  );
+  progress.append(courses, tests, streak, exp);
+  const mainBlock = el("div", {
+    className: "grid grid-cols-1 lg:grid-cols-3 gap-8"
+  });
+  const learningBlock = el("div", {
+    className: "lg:col-span-2 space-y-6"
+  });
+  const learningHeader = el("div", {
+    className: "flex items-center justify-between"
+  });
+  const learningTitle = el("h2", {
+    text: "Continue learning",
+    i18n: "dashboard.learning.title",
+    className: "text-xl font-bold cursor-text"
+  });
+  const learningViewAll = el("button", {
+    className: "text-primary text-sm font-semibold hover:underline cursor-text",
+    text: "View all"
+  });
+  const learningList = el("div", {
+    className: "lg:col-span-2 space-y-6"
+  });
+  const learningLast = el("div", {
+    className: "group bg-white dark:bg-slate-800/40 p-4 rounded-xl border border-slate-200 dark:border-slate-700/50 hover:border-primary/50 transition-all cursor-pointer flex gap-4"
+  });
+  const learningLastImgWrapper = el("div", {
+    className: "w-40 h-24 rounded-lg overflow-hidden shrink-0 bg-slate-200 dark:bg-slate-700 relative"
+  });
+  const learningLastImg = el("img", {
+    className: "w-full h-full object-cover",
+    attrs: { src: images[`./assets/img/js.png`], alt: "title", loading: "lazy" }
+  });
+  const learningLastContentWrapper = el("div", {
+    className: "flex-1 flex flex-col justify-between"
+  });
+  learningList.append(learningLast);
+  learningLast.append(learningLastImgWrapper, learningLastContentWrapper);
+  learningLastImgWrapper.append(learningLastImg);
+  learningHeader.append(learningTitle, learningViewAll);
+  learningBlock.append(learningHeader, learningList);
+  mainBlock.append(learningBlock);
+  const articlesBlock = el("div", {
+    className: "flex flex-col gap-4"
+  });
+  const coursesBlock = el("div", {
+    className: "flex flex-col gap-4"
+  });
+  const testsBlock = el("div", {
+    className: "flex flex-col gap-4"
+  });
+  mainBlock.append(articlesBlock, coursesBlock, testsBlock);
+  pageContent.append(pageTitle, description, progress);
   page.append(pageContent);
   dashboard.append(header, page);
+  const widthBlock = el("span", {
+    text: window.innerWidth
+  });
+  const heightBlock = el("span", {
+    text: window.innerHeight
+  });
+  window.addEventListener("resize", () => {
+    widthBlock.textContent = window.innerWidth;
+    heightBlock.textContent = window.innerHeight;
+  });
+  function createProgressItem(title = "progress", count = "0", icon = "play", color = "bg-blue-500/10 text-blue-500") {
+    const item = el("div", {
+      className: "flex-1 w-full min-w-[209px] bg-white dark:bg-gray-800 px-3 py-4 rounded-2xl border border-[var(--color-border)] flex items-center gap-3"
+    });
+    const iconWrapper = el("div", {
+      className: `size-12 rounded-xl flex items-center justify-center ` + color
+    });
+    const iconSymbol = el("span", {
+      className: "material-symbols-outlined text-3xl!",
+      text: icon
+    });
+    const content = el("div", {
+      className: "flex flex-col justify-between items-between"
+    });
+    const titleEl = el("h2", {
+      className: "text-[14px] font-medium leading-3 cursor-text",
+      text: title
+    });
+    const countEl = el("h3", {
+      className: "text-3xl font-bold cursor-text",
+      text: count
+    });
+    content.append(titleEl, countEl);
+    iconWrapper.append(iconSymbol);
+    item.append(iconWrapper, content);
+    return item;
+  }
   return dashboard;
 }
 class Card {
