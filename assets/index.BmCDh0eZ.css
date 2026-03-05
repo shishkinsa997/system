@@ -225,6 +225,7 @@ summary {
       --tw-skew-y: initial;
       --tw-space-y-reverse: 0;
       --tw-border-style: solid;
+      --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
       --tw-shadow: 0 0 #0000;
@@ -665,10 +666,6 @@ summary {
     }
   }
 
-  .mx-3 {
-    margin-inline: calc(var(--spacing) * 3);
-  }
-
   .my-2 {
     margin-block: calc(var(--spacing) * 2);
   }
@@ -784,10 +781,6 @@ summary {
     min-height: calc(var(--spacing) * 10);
   }
 
-  .min-h-12 {
-    min-height: calc(var(--spacing) * 12);
-  }
-
   .min-h-\[calc\(100dvh-16px\)\] {
     min-height: calc(100dvh - 16px);
   }
@@ -820,6 +813,14 @@ summary {
     width: 100%;
   }
 
+  .w-screen {
+    width: 100vw;
+  }
+
+  .max-w-120 {
+    max-width: calc(var(--spacing) * 120);
+  }
+
   .max-w-225 {
     max-width: calc(var(--spacing) * 225);
   }
@@ -828,19 +829,19 @@ summary {
     min-width: calc(var(--spacing) * 0);
   }
 
-  .min-w-72 {
-    min-width: calc(var(--spacing) * 72);
+  .min-w-30 {
+    min-width: calc(var(--spacing) * 30);
   }
 
-  .min-w-screen {
-    min-width: 100vw;
+  .min-w-72 {
+    min-width: calc(var(--spacing) * 72);
   }
 
   .flex-1 {
     flex: 1;
   }
 
-  .shrink-0 {
+  .flex-shrink-0, .shrink-0 {
     flex-shrink: 0;
   }
 
@@ -1142,8 +1143,22 @@ summary {
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
 
+  .text-\[10px\] {
+    font-size: 10px;
+  }
+
   .text-\[32px\]\! {
     font-size: 32px !important;
+  }
+
+  .leading-2 {
+    --tw-leading: calc(var(--spacing) * 2);
+    line-height: calc(var(--spacing) * 2);
+  }
+
+  .leading-6 {
+    --tw-leading: calc(var(--spacing) * 6);
+    line-height: calc(var(--spacing) * 6);
   }
 
   .font-bold {
@@ -1354,6 +1369,12 @@ summary {
   --color-border: #b4b7c81f;
 }
 
+html {
+  font-optical-sizing: auto;
+  font-family: Outfit, sans-serif;
+  font-style: normal;
+}
+
 .dark {
   --color-primary: #1d4ed8;
   --color-secondary: #6ee7b7;
@@ -1421,6 +1442,11 @@ summary {
   syntax: "*";
   inherits: false;
   initial-value: solid;
+}
+
+@property --tw-leading {
+  syntax: "*";
+  inherits: false
 }
 
 @property --tw-font-weight {

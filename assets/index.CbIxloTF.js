@@ -84,13 +84,18 @@ function initSidebar() {
     attrs: { href: "/", "data-link": "true" }
   });
   const gachiTitle = el("span", {
-    className: "ml-2 text-l font-bold whitespace-nowrap text-zinc-950 dark:text-white",
+    className: "ml-2 text-l leading-6 flex flex-col font-bold whitespace-nowrap text-zinc-950 dark:text-white",
     text: "Gachi PractiCum"
+  });
+  const gachiSubtitle = el("span", {
+    className: "text-[10px] leading-2 whitespace-nowrap text-zinc-500 dark:text-zinc-400",
+    text: "Premium Learning"
   });
   const gachiLogo = el("span", {
     className: "material-symbols-outlined text-[32px]! w-8 h-8 dark:text-white",
     text: "sports_kabaddi"
   });
+  gachiTitle.append(gachiSubtitle);
   gachiMain.append(gachiLogo, gachiTitle);
   const navigation = el("header", {
     className: "flex flex-col items-center p-2 justify-between h-full overflow-hidden border-t border-[var(--color-border)]"
@@ -135,7 +140,7 @@ function initSidebar() {
     dashLogo,
     "/dashboard"
   );
-  const course = createSidebarElement(
+  const courses = createSidebarElement(
     "Courses",
     "courses",
     coursesLogo,
@@ -166,7 +171,7 @@ function initSidebar() {
     settingsLogo,
     "/settings"
   );
-  headerNav.append(dashboard, course, articles, tests, library);
+  headerNav.append(dashboard, courses, articles, tests, library);
   footerNav.append(support, settings);
   navigation.append(headerNav, footerNav);
   const profile = el("footer", {
@@ -206,6 +211,7 @@ function initSidebar() {
     sidebar.classList.remove("w-64");
     sidebar.classList.add("w-16");
   });
+  courses.classList.add("bg-[var(--color-primary)]");
   document.addEventListener("click", (e) => {
     const sliderElements = document.querySelectorAll("#sidebar nav a");
     const link = e.target.closest("a");
@@ -213,12 +219,14 @@ function initSidebar() {
     e.preventDefault();
     history.pushState(null, "", link.href);
     const linkPath = window.location.pathname;
-    const sliderElement = document.getElementById(`${linkPath.slice(1)}`);
+    const sliderElement = document.getElementById(`${linkPath.slice(1)}`) || 0;
     sliderElements.forEach((el2) => {
       el2.classList.remove("bg-[var(--color-primary)]");
     });
     if (sliderElement) {
       sliderElement.classList.add("bg-[var(--color-primary)]");
+    } else if (linkPath === "/") {
+      sliderElements[1].classList.add("bg-[var(--color-primary)]");
     }
   });
   function createSidebarElement(tag, id, icon, link = "#") {
@@ -239,14 +247,14 @@ function initSidebar() {
 function initPage() {
   const page = el("main", {
     id: "main",
-    className: "flex flex-col h-full w-full transition-all duration-300 p-2 pl-16"
+    className: "flex flex-col h-full w-full  transition-all duration-300 p-2 pl-16"
   });
   const mainWrapper = el("div", {
     className: "flex flex-col flex-1 items-center bg-[#171721] h-full min-h-[calc(100dvh-16px)] p-2 rounded-lg overflow-y-auto border border-[var(--color-border)]"
   });
   const content = el("div", {
     id: "page-content",
-    className: "flex flex-1 w-full h-full"
+    className: "flex flex-1 w-full h-full max-w-225"
   });
   mainWrapper.append(content);
   page.append(mainWrapper);
@@ -263,7 +271,7 @@ function initPage() {
 function buildUI(root) {
   const app = el("div", {
     id: "app",
-    className: "fixed overflow-hidden left-0 top-0 min-w-screen h-dvh bg-[#10101a] text-gray-400"
+    className: "fixed overflow-hidden left-0 top-0 w-screen h-dvh bg-[#10101a] text-gray-400"
   });
   const aside = initSidebar();
   const { page, content } = initPage();
@@ -314,10 +322,10 @@ const router = {
 };
 function initSearch() {
   const search = el("div", {
-    className: "relative flex items-center h-10 w-full rounded-lg bg-[#171721]"
+    className: "relative flex items-center h-10 w-full min-w-30 max-w-120 rounded-lg bg-[#171721]"
   });
   const searchInput = el("input", {
-    className: "flex-1 h-10 px-3 rounded-lg bg-[#171721] border border-[var(--color-border)] text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-border)]",
+    className: "flex-1 h-10 px-3 min-w-30 rounded-lg bg-[#171721] border border-[var(--color-border)] text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-border)]",
     attrs: { type: "text", placeholder: "Search..." }
   });
   const searchIcon = el("span", {
@@ -345,10 +353,10 @@ function initSearch() {
 }
 function initHeader() {
   const header = el("div", {
-    className: "flex items-center justify-center min-h-12 h-12 py-2 mb-4 w-full"
+    className: "flex items-center flex-shrink-0 justify-center p-2 mb-4 w-full"
   });
   const headerContent = el("nav", {
-    className: "flex items-center justify-between w-full mx-3 max-w-225 gap-2"
+    className: "flex items-center justify-between w-full  gap-2"
   });
   const search = initSearch();
   const notificationsWrapper = el("div", {
@@ -377,10 +385,10 @@ function initDashboard() {
     className: "flex flex-col flex-1 items-center h-full w-full"
   });
   const page = el("div", {
-    className: "flex flex-1 items-start justify-center py-2 w-full"
+    className: "flex flex-1 items-start justify-center p-2 w-full"
   });
   const pageContent = el("div", {
-    className: "flex flex-1 flex-col items-start justify-start mx-3 max-w-225 gap-2"
+    className: "flex flex-1 flex-col items-start justify-start w-full gap-2"
   });
   const pageTitle = el("h1", {
     text: "Dashboard",
@@ -395,79 +403,33 @@ function initDashboard() {
   dashboard.append(header, page);
   return dashboard;
 }
-function initFilterBar() {
-  const filterBar = el("div", {
-    className: "flex flex-nowrap w-full gap-3 items-center pb-4 pt-6 border-b"
-  });
-  const filter = el("div", {
-    className: "flex items-center text-white gap-2 mr-4"
-  });
-  const tuneIcon = el("span", {
-    className: "material-symbols-outlined text-sm text-white",
-    text: "tune"
-  });
-  const filterText = el("span", {
-    className: "font-medium",
-    text: "Filter by:"
-  });
-  const mostRecentButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
-  });
-  const mostRecentText = el("span", {
-    className: "text-sm font-medium text-white opacity-70",
-    text: "Most Recent"
-  });
-  const expandMoreIcon = el("span", {
-    className: "material-symbols-outlined text-sm text-white opacity-70",
-    text: "expand_more"
-  });
-  const highestRatedButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
-  });
-  const highestRatedText = el("span", {
-    className: "text-sm font-medium text-white opacity-70",
-    text: "Highest Rated"
-  });
-  const verifiedTradersButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
-  });
-  const verifiedTradersText = el("span", {
-    className: "text-sm font-medium text-white opacity-70",
-    text: "Verified Traders"
-  });
-  const checkCircleIcon = el("span", {
-    className: "material-symbols-outlined text-sm text-white opacity-70",
-    text: "check_circle"
-  });
-  const withPhotosButton = el("button", {
-    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
-  });
-  const withPhotosText = el("span", {
-    className: "text-sm font-medium text-white opacity-70",
-    text: "With Photos"
-  });
-  const imageIcon = el("span", {
-    className: "material-symbols-outlined text-sm text-white opacity-70",
-    text: "image"
-  });
-  withPhotosButton.append(withPhotosText, imageIcon);
-  verifiedTradersButton.append(
-    verifiedTradersText,
-    checkCircleIcon,
-    expandMoreIcon
-  );
-  mostRecentButton.append(mostRecentText, expandMoreIcon);
-  highestRatedButton.append(highestRatedText, expandMoreIcon);
-  filter.append(tuneIcon, filterText);
-  filterBar.append(
-    filter,
-    mostRecentButton,
-    highestRatedButton,
-    verifiedTradersButton,
-    withPhotosButton
-  );
-  return filterBar;
-}
+const __vite_glob_0_0 = "/system/assets/1c.qNPM4d83.png";
+const __vite_glob_0_1 = "/system/assets/accountant.DpCDMNoF.png";
+const __vite_glob_0_2 = "/system/assets/business.16gnDF2l.png";
+const __vite_glob_0_3 = "/system/assets/c__.Bgtmkdyr.png";
+const __vite_glob_0_4 = "/system/assets/cyber.C7uPl0lx.png";
+const __vite_glob_0_5 = "/system/assets/data_an.Bz5TYpqJ.png";
+const __vite_glob_0_6 = "/system/assets/design_ai.C90AsTOO.png";
+const __vite_glob_0_7 = "/system/assets/design_face.Dbfl6SFI.png";
+const __vite_glob_0_8 = "/system/assets/design_item.oyCF8Q7_.png";
+const __vite_glob_0_9 = "/system/assets/dev_ai.BqzyUwY-.png";
+const __vite_glob_0_10 = "/system/assets/economic.DiiFP6MY.png";
+const __vite_glob_0_11 = "/system/assets/fashion.DwpuZaUY.png";
+const __vite_glob_0_12 = "/system/assets/finance.D6CoGN2R.png";
+const __vite_glob_0_13 = "/system/assets/graph.DH95juJp.png";
+const __vite_glob_0_14 = "/system/assets/hr.BvBrfyW4.png";
+const __vite_glob_0_15 = "/system/assets/html.BMwUNedB.png";
+const __vite_glob_0_16 = "/system/assets/interior.CQEJ7EuC.png";
+const __vite_glob_0_17 = "/system/assets/java.CuO6y1gp.png";
+const __vite_glob_0_18 = "/system/assets/js.bwI8X06P.png";
+const __vite_glob_0_19 = "/system/assets/landscape.DJX24JRG.png";
+const __vite_glob_0_20 = "/system/assets/linux.Co2yX9Mr.png";
+const __vite_glob_0_21 = "/system/assets/pepe-mini.DzoANEG7.jpg";
+const __vite_glob_0_22 = "/system/assets/product.G6OMbplu.png";
+const __vite_glob_0_23 = "/system/assets/project.Dpk0Fpbh.png";
+const __vite_glob_0_24 = "/system/assets/py.6CzbFQ9I.png";
+const __vite_glob_0_25 = "/system/assets/sys_admin.BPyRUumj.png";
+const images = /* @__PURE__ */ Object.assign({ "../assets/img/1c.png": __vite_glob_0_0, "../assets/img/accountant.png": __vite_glob_0_1, "../assets/img/business.png": __vite_glob_0_2, "../assets/img/c++.png": __vite_glob_0_3, "../assets/img/cyber.png": __vite_glob_0_4, "../assets/img/data_an.png": __vite_glob_0_5, "../assets/img/design_ai.png": __vite_glob_0_6, "../assets/img/design_face.png": __vite_glob_0_7, "../assets/img/design_item.png": __vite_glob_0_8, "../assets/img/dev_ai.png": __vite_glob_0_9, "../assets/img/economic.png": __vite_glob_0_10, "../assets/img/fashion.png": __vite_glob_0_11, "../assets/img/finance.png": __vite_glob_0_12, "../assets/img/graph.png": __vite_glob_0_13, "../assets/img/hr.png": __vite_glob_0_14, "../assets/img/html.png": __vite_glob_0_15, "../assets/img/interior.png": __vite_glob_0_16, "../assets/img/java.png": __vite_glob_0_17, "../assets/img/js.png": __vite_glob_0_18, "../assets/img/landscape.png": __vite_glob_0_19, "../assets/img/linux.png": __vite_glob_0_20, "../assets/img/pepe-mini.jpg": __vite_glob_0_21, "../assets/img/product.png": __vite_glob_0_22, "../assets/img/project.png": __vite_glob_0_23, "../assets/img/py.png": __vite_glob_0_24, "../assets/img/sys_admin.png": __vite_glob_0_25 });
 class Card {
   constructor({ title, img, desc, href = "#" }) {
     this.card = el("article", {
@@ -478,11 +440,13 @@ class Card {
     });
     const image = el("img", {
       className: "transition-transform duration-500 hover:scale-110 w-full h-full object-cover transition-transform duration-500 hover:scale-110",
-      attrs: { src: img, alt: title, loading: "lazy" }
+      attrs: { src: images[`../assets/img/${img}`], alt: title, loading: "lazy" }
     });
     const gradientOverlay = el("div", {
       className: "pointer-events-none absolute inset-x-0 top-0 h-full rounded-[16px]",
-      attrs: { "style": "backdrop-filter: blur(30px); background: rgba(225, 225, 225, 0.05); -webkit-mask-image: linear-gradient(rgb(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0) 70%); " }
+      attrs: {
+        style: "backdrop-filter: blur(30px); background: rgba(225, 225, 225, 0.05); -webkit-mask-image: linear-gradient(rgb(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0) 70%); "
+      }
     });
     const contentWrapper = el("a", {
       className: "relative z-[1] grid grid-rows-[1fr_auto] h-full w-full p-4 items-end cursor-pointer focus:outline-none",
@@ -723,10 +687,10 @@ function initCourses() {
     className: "flex flex-col flex-1 items-center h-full w-full"
   });
   const page = el("div", {
-    className: "flex flex-1 items-start justify-center py-2 w-full"
+    className: "flex flex-1 items-start justify-center p-2 w-full"
   });
   const pageContent = el("div", {
-    className: "flex flex-1 flex-col items-start justify-start mx-3 max-w-225 gap-2"
+    className: "flex flex-1 flex-col items-start justify-start w-full gap-2"
   });
   const pageTitle = el("h1", {
     text: "All courses",
@@ -737,6 +701,79 @@ function initCourses() {
   courses.append(header, page);
   return courses;
 }
+function initFilterBar() {
+  const filterBar = el("div", {
+    className: "flex flex-nowrap w-full gap-3 items-center pb-4 pt-6 border-b"
+  });
+  const filter = el("div", {
+    className: "flex items-center text-white gap-2 mr-4"
+  });
+  const tuneIcon = el("span", {
+    className: "material-symbols-outlined text-sm text-white",
+    text: "tune"
+  });
+  const filterText = el("span", {
+    className: "font-medium",
+    text: "Filter by:"
+  });
+  const mostRecentButton = el("button", {
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
+  });
+  const mostRecentText = el("span", {
+    className: "text-sm font-medium text-white opacity-70",
+    text: "Most Recent"
+  });
+  const expandMoreIcon = el("span", {
+    className: "material-symbols-outlined text-sm text-white opacity-70",
+    text: "expand_more"
+  });
+  const highestRatedButton = el("button", {
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
+  });
+  const highestRatedText = el("span", {
+    className: "text-sm font-medium text-white opacity-70",
+    text: "Highest Rated"
+  });
+  const verifiedTradersButton = el("button", {
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
+  });
+  const verifiedTradersText = el("span", {
+    className: "text-sm font-medium text-white opacity-70",
+    text: "Verified Traders"
+  });
+  const checkCircleIcon = el("span", {
+    className: "material-symbols-outlined text-sm text-white opacity-70",
+    text: "check_circle"
+  });
+  const withPhotosButton = el("button", {
+    className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
+  });
+  const withPhotosText = el("span", {
+    className: "text-sm font-medium text-white opacity-70",
+    text: "With Photos"
+  });
+  const imageIcon = el("span", {
+    className: "material-symbols-outlined text-sm text-white opacity-70",
+    text: "image"
+  });
+  withPhotosButton.append(withPhotosText, imageIcon);
+  verifiedTradersButton.append(
+    verifiedTradersText,
+    checkCircleIcon,
+    expandMoreIcon
+  );
+  mostRecentButton.append(mostRecentText, expandMoreIcon);
+  highestRatedButton.append(highestRatedText, expandMoreIcon);
+  filter.append(tuneIcon, filterText);
+  filterBar.append(
+    filter,
+    mostRecentButton,
+    highestRatedButton,
+    verifiedTradersButton,
+    withPhotosButton
+  );
+  return filterBar;
+}
 function initArticles() {
   const header = initHeader();
   const filterBar = initFilterBar();
@@ -744,10 +781,10 @@ function initArticles() {
     className: "flex flex-col flex-1 items-center h-full w-full"
   });
   const page = el("div", {
-    className: "flex flex-1 items-start justify-center py-2 w-full"
+    className: "flex flex-1 items-start justify-center p-2 w-full"
   });
   const pageContent = el("div", {
-    className: "flex flex-1 flex-col items-start justify-start mx-3 max-w-225 gap-2"
+    className: "flex flex-1 flex-col items-start justify-start gap-2"
   });
   const pageTitle = el("h1", {
     text: "Articles base",
