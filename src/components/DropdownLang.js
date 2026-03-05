@@ -81,8 +81,9 @@ export function initDropdownLang() {
       : (caret.style.transform = "rotate(0deg)");
   }
 
-  button.addEventListener("click", function (event) {
+  button.addEventListener("mouseenter", function (event) {
     event.stopPropagation();
+    if (caret.style.transform == "rotate(180deg)") return;
 
     toggleCaret();
     menu.classList.toggle("hidden");
@@ -90,6 +91,31 @@ export function initDropdownLang() {
       "aria-expanded",
       menu.classList.contains("hidden") ? "false" : "true",
     );
+  });
+  button.addEventListener("mouseleave", function (event) {
+    if (menu.matches(":hover")) {
+      return;
+    }
+
+    setTimeout(() => {
+      if (!button.matches(":hover") && !menu.matches(":hover")) {
+        toggleCaret();
+        menu.classList.add("hidden");
+        button.setAttribute("aria-expanded", "false");
+      }
+    }, 3000);
+  });
+
+  menu.addEventListener("mouseleave", function (event) {
+    event.stopPropagation();
+
+    setTimeout(() => {
+      if (!button.matches(":hover") && !menu.matches(":hover")) {
+        toggleCaret();
+        menu.classList.add("hidden");
+        button.setAttribute("aria-expanded", "false");
+      }
+    }, 3000);
   });
 
   const dropdownItems = menu.querySelectorAll("[role='lang-option']");
