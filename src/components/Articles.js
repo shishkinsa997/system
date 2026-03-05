@@ -11,12 +11,12 @@ export function initArticles() {
   });
 
   const page = el("div", {
-    className: "flex flex-1 items-start justify-center py-2 w-full",
+    className: "flex flex-1 items-start justify-center p-2 w-full",
   });
 
   const pageContent = el("div", {
     className:
-      "flex flex-1 flex-col items-start justify-start mx-3 max-w-225 gap-2",
+      "flex flex-1 flex-col items-start justify-start gap-2",
   });
 
   const pageTitle = el("h1", {

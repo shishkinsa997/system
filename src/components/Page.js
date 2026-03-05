@@ -4,7 +4,7 @@ export function initPage() {
   const page = el("main", {
     id: "main",
     className:
-      "flex flex-col h-full w-full transition-all duration-300 p-2 pl-16",
+      "flex flex-col h-full w-full  transition-all duration-300 p-2 pl-16",
   });
 
   const mainWrapper = el("div", {
@@ -14,7 +14,7 @@ export function initPage() {
 
   const content = el("div", {
     id: "page-content",
-    className: "flex flex-1 w-full h-full",
+    className: "flex flex-1 w-full h-full max-w-225",
   });
 
   mainWrapper.append(content);

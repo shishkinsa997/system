@@ -2,11 +2,11 @@ import { el, createIcon } from "../utils.js";
 
 export function initSearch() {
   const search = el("div", {
-    className: "relative flex items-center h-10 w-full rounded-lg bg-[#171721]",
+    className: "relative flex items-center h-10 w-full min-w-30 max-w-120 rounded-lg bg-[#171721]",
   });
   const searchInput = el("input", {
     className:
-      "flex-1 h-10 px-3 rounded-lg bg-[#171721] border border-[var(--color-border)] text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-border)]",
+      "flex-1 h-10 px-3 min-w-30 rounded-lg bg-[#171721] border border-[var(--color-border)] text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-border)]",
     attrs: { type: "text", placeholder: "Search..." },
   });
   const searchIcon = el("span", {

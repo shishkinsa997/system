@@ -5,10 +5,10 @@ import { initSearch } from "./Search.js";
 export function initHeader() {
   const header = el("div", {
     className:
-      "flex items-center justify-center min-h-12 h-12 py-2 mb-4 w-full",
+      "flex items-center flex-shrink-0 justify-center p-2 mb-4 w-full",
   });
   const headerContent = el("nav", {
-    className: "flex items-center justify-between w-full mx-3 max-w-225 gap-2",
+    className: "flex items-center justify-between w-full  gap-2",
   });
   const search = initSearch();
   const notificationsWrapper = el("div", {
