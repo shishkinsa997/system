@@ -27,12 +27,39 @@
     fetch(link.href, fetchOpts);
   }
 })();
+const __vite_glob_0_0$1 = "/system/assets/1c.qNPM4d83.png";
+const __vite_glob_0_1$1 = "/system/assets/accountant.DpCDMNoF.png";
+const __vite_glob_0_2 = "/system/assets/business.16gnDF2l.png";
+const __vite_glob_0_3 = "/system/assets/c__.Bgtmkdyr.png";
+const __vite_glob_0_4 = "/system/assets/cyber.C7uPl0lx.png";
+const __vite_glob_0_5 = "/system/assets/data_an.Bz5TYpqJ.png";
+const __vite_glob_0_6 = "/system/assets/design_ai.C90AsTOO.png";
+const __vite_glob_0_7 = "/system/assets/design_face.Dbfl6SFI.png";
+const __vite_glob_0_8 = "/system/assets/design_item.oyCF8Q7_.png";
+const __vite_glob_0_9 = "/system/assets/dev_ai.BqzyUwY-.png";
+const __vite_glob_0_10 = "/system/assets/economic.DiiFP6MY.png";
+const __vite_glob_0_11 = "/system/assets/fashion.DwpuZaUY.png";
+const __vite_glob_0_12 = "/system/assets/finance.D6CoGN2R.png";
+const __vite_glob_0_13 = "/system/assets/graph.DH95juJp.png";
+const __vite_glob_0_14 = "/system/assets/hr.BvBrfyW4.png";
+const __vite_glob_0_15 = "/system/assets/html.BMwUNedB.png";
+const __vite_glob_0_16 = "/system/assets/interior.CQEJ7EuC.png";
+const __vite_glob_0_17 = "/system/assets/java.CuO6y1gp.png";
+const __vite_glob_0_18 = "/system/assets/js.bwI8X06P.png";
+const __vite_glob_0_19 = "/system/assets/landscape.DJX24JRG.png";
+const __vite_glob_0_20 = "/system/assets/linux.Co2yX9Mr.png";
+const __vite_glob_0_21 = "/system/assets/pepe-mini.DzoANEG7.jpg";
+const __vite_glob_0_22 = "/system/assets/product.G6OMbplu.png";
+const __vite_glob_0_23 = "/system/assets/project.Dpk0Fpbh.png";
+const __vite_glob_0_24 = "/system/assets/py.6CzbFQ9I.png";
+const __vite_glob_0_25 = "/system/assets/sys_admin.BPyRUumj.png";
 function el(tag, options = {}) {
   const e = document.createElement(tag);
   if (options.className) e.className = options.className;
   if (options.id) e.id = options.id;
   if (options.text) e.textContent = options.text;
   if (options.html) e.innerHTML = options.html;
+  if (options.i18n) e.setAttribute("data-i18n", options.i18n);
   if (options.attrs) {
     for (const k in options.attrs) e.setAttribute(k, options.attrs[k]);
   }
@@ -73,6 +100,7 @@ function createIcon(pathData, options = {}) {
   svg.appendChild(path);
   return svg;
 }
+const images = /* @__PURE__ */ Object.assign({ "./assets/img/1c.png": __vite_glob_0_0$1, "./assets/img/accountant.png": __vite_glob_0_1$1, "./assets/img/business.png": __vite_glob_0_2, "./assets/img/c++.png": __vite_glob_0_3, "./assets/img/cyber.png": __vite_glob_0_4, "./assets/img/data_an.png": __vite_glob_0_5, "./assets/img/design_ai.png": __vite_glob_0_6, "./assets/img/design_face.png": __vite_glob_0_7, "./assets/img/design_item.png": __vite_glob_0_8, "./assets/img/dev_ai.png": __vite_glob_0_9, "./assets/img/economic.png": __vite_glob_0_10, "./assets/img/fashion.png": __vite_glob_0_11, "./assets/img/finance.png": __vite_glob_0_12, "./assets/img/graph.png": __vite_glob_0_13, "./assets/img/hr.png": __vite_glob_0_14, "./assets/img/html.png": __vite_glob_0_15, "./assets/img/interior.png": __vite_glob_0_16, "./assets/img/java.png": __vite_glob_0_17, "./assets/img/js.png": __vite_glob_0_18, "./assets/img/landscape.png": __vite_glob_0_19, "./assets/img/linux.png": __vite_glob_0_20, "./assets/img/pepe-mini.jpg": __vite_glob_0_21, "./assets/img/product.png": __vite_glob_0_22, "./assets/img/project.png": __vite_glob_0_23, "./assets/img/py.png": __vite_glob_0_24, "./assets/img/sys_admin.png": __vite_glob_0_25 });
 function initSidebar() {
   const sidebar = el("aside", {
     id: "sidebar",
@@ -85,11 +113,13 @@ function initSidebar() {
   });
   const gachiTitle = el("span", {
     className: "ml-2 text-l leading-6 flex flex-col font-bold whitespace-nowrap text-zinc-950 dark:text-white",
-    text: "Gachi PractiCum"
+    text: "Gachi PractiCum",
+    i18n: "side.title"
   });
   const gachiSubtitle = el("span", {
     className: "text-[10px] leading-2 whitespace-nowrap text-zinc-500 dark:text-zinc-400",
-    text: "Premium Learning"
+    text: "Premium Learning",
+    i18n: "side.subtitle"
   });
   const gachiLogo = el("span", {
     className: "material-symbols-outlined text-[32px]! w-8 h-8 dark:text-white",
@@ -191,12 +221,13 @@ function initSidebar() {
   });
   const avatarRole = el("span", {
     text: "Admin",
+    i18n: "side.role",
     className: "block truncate text-m font-normal text-zinc-500 dark:text-zinc-400"
   });
   avatarText.append(avatarName, avatarRole);
   const avatar = el("img", {
     className: "rounded-full size-10 ml-1 inline-grid shrink-0 align-middle",
-    attrs: { src: "pepe-mini.jpg" }
+    attrs: { src: images["./assets/img/pepe-mini.jpg"] }
   });
   profileWrapper.append(avatar, avatarText);
   profile.append(profileWrapper);
@@ -237,7 +268,8 @@ function initSidebar() {
     });
     const text = el("span", {
       className: "ml-4 text-m font-medium whitespace-nowrap",
-      text: `${tag}`
+      text: `${tag}`,
+      i18n: `side.${id}`
     });
     container.append(icon, text);
     return container;
@@ -279,6 +311,28 @@ function buildUI(root) {
   root.appendChild(app);
   return { main: content };
 }
+const __vite_glob_0_0 = "data:application/json;base64,ew0KICAic2lkZS50aXRsZSI6ICJHYWNoaSBQcmFjdGljdW0iLA0KICAic2lkZS5zdWJ0aXRsZSI6ICJQcmVtaXVtIExlYXJuaW5nIiwNCiAgInNpZGUuZGFzaGJvYXJkIjogIkRhc2hib2FyZCIsDQogICJzaWRlLmNvdXJzZXMiOiAiQ291cnNlcyIsDQogICJzaWRlLmFydGljbGVzIjogIkFydGljbGVzIiwNCiAgInNpZGUuc3VwcG9ydCI6ICJTdXBwb3J0IiwNCiAgInNpZGUuc2V0dGluZ3MiOiAiU2V0dGluZ3MiLA0KICAic2lkZS5yb2xlIjogIkFkbWluIiwNCg0KICAiZGFzaGJvYXJkLnRpdGxlIjogIkRhc2hib2FyZCIsDQogICJkYXNoYm9hcmQuZGVzY3JpcHRpb24iOiAiSGVyZSB3aWxsIGJlIHRoZSBkYXNoYm9hcmQgY29udGVudC4iLA0KDQogICJjb3Vyc2VzLnRpdGxlIjogIkFsbCBjb3Vyc2VzIiwNCiAgImNvdXJzZXMucHJvZ3JhbW1pbmciOiAiUHJvZ3JhbW1pbmciLA0KICAiY291cnNlcy5kZXNpZ24iOiAiRGVzaWduIiwNCiAgImNvdXJzZXMubWFuYWdlbWVudCI6ICJNYW5hZ2VtZW50IiwNCg0KICAiYXJ0aWNsZXMudGl0bGUiOiAiQXJ0aWNsZXMgYmFzZSIsDQogICJhcnRpY2xlcy5maWx0ZXJCeSI6ICJGaWx0ZXIgYnk6IiwNCiAgImFydGljbGVzLnZlcmlmaWVkIjogIlZlcmlmaWVkIiwNCiAgImFydGljbGVzLm1vc3RSZWNlbnQiOiAiTW9zdCBSZWNlbnQiLA0KICAiYXJ0aWNsZXMuaGlnaGVzdFJhdGVkIjogIkhpZ2hlc3QgUmF0ZWQiLA0KICAiYXJ0aWNsZXMud2l0aFBob3RvcyI6ICJXaXRoIFBob3RvIg0KfQ==";
+const __vite_glob_0_1 = "data:application/json;base64,ew0KICAic2lkZS50aXRsZSI6ICLQk9Cw0YfQuCDQn9GA0LDQutGC0LjQutGD0LwiLA0KICAic2lkZS5zdWJ0aXRsZSI6ICLQn9GA0LXQvNC40LDQu9GM0L3QvtC1INC+0LHRg9GH0LXQvdC40LUiLA0KICAic2lkZS5kYXNoYm9hcmQiOiAi0JzQvtGPINC00L7RgdC60LAiLA0KICAic2lkZS5jb3Vyc2VzIjogItCa0YPRgNGB0YsiLA0KICAic2lkZS5hcnRpY2xlcyI6ICLQodGC0LDRgtGM0LgiLA0KICAic2lkZS5zdXBwb3J0IjogItCf0L7QtNC00LXRgNC20LrQsCIsDQogICJzaWRlLnNldHRpbmdzIjogItCd0LDRgdGC0YDQvtC50LrQuCIsDQogICJzaWRlLnJvbGUiOiAi0JDQtNC80LjQvSIsDQoNCiAgImRhc2hib2FyZC50aXRsZSI6ICLQnNC+0Y8g0LTQvtGB0LrQsCIsDQogICJkYXNoYm9hcmQuZGVzY3JpcHRpb24iOiAi0JfQtNC10YHRjCDQsdGD0LTQtdGCINC60L7QvdGC0LXQvdGCLiIsDQoNCiAgImNvdXJzZXMudGl0bGUiOiAi0JLRgdC1INC60YPRgNGB0YsiLA0KICAiY291cnNlcy5wcm9ncmFtbWluZyI6ICLQn9GA0L7Qs9GA0LDQvNC80LjRgNC+0LLQsNC90LjQtSIsDQogICJjb3Vyc2VzLmRlc2lnbiI6ICLQlNC40LfQsNC50L0iLA0KICAiY291cnNlcy5tYW5hZ2VtZW50IjogItCc0LXQvdC10LTQttC80LXQvdGCIiwNCg0KICAiYXJ0aWNsZXMudGl0bGUiOiAi0KHRgtCw0YLRjNC4IiwNCiAgImFydGljbGVzLmZpbHRlckJ5IjogItCk0LjQu9GM0YLRgDoiLA0KICAiYXJ0aWNsZXMudmVyaWZpZWQiOiAi0J7RhNC40YbQuNCw0LvRjNC90YvQtSIsDQogICJhcnRpY2xlcy5tb3N0UmVjZW50IjogItCd0LXQtNCw0LLQvdC40LUiLA0KICAiYXJ0aWNsZXMuaGlnaGVzdFJhdGVkIjogItCf0L4g0YDQtdC4zIbRgtC40L3Qs9GDIiwNCiAgImFydGljbGVzLndpdGhQaG90b3MiOiAi0KEg0YTQvtGC0L4iDQoNCn0=";
+const DEFAULT_LANG = "en";
+let currentDict = {};
+async function loadLanguage(lang) {
+  const code = lang || localStorage.getItem("lang") || DEFAULT_LANG;
+  const url = new URL((/* @__PURE__ */ Object.assign({ "../locales/en.json": __vite_glob_0_0, "../locales/ru.json": __vite_glob_0_1 }))[`../locales/${code}.json`], import.meta.url);
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Cannot load locale " + code);
+  currentDict = await res.json();
+  localStorage.setItem("lang", code);
+  document.documentElement.setAttribute("lang", code);
+  applyTranslations();
+  return code;
+}
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach((el2) => {
+    const key = el2.getAttribute("data-i18n");
+    const text = currentDict[key];
+    if (text) el2.textContent = text;
+  });
+}
 const BASE_URL = "/system/";
 const router = {
   routes: [],
@@ -318,11 +372,12 @@ const router = {
     const element = route.component();
     if (!element) return;
     this.container.replaceChildren(element);
+    applyTranslations();
   }
 };
 function initSearch() {
   const search = el("div", {
-    className: "relative flex items-center h-10 w-full min-w-30 max-w-120 rounded-lg bg-[#171721]"
+    className: "relative flex items-center mr-auto h-10 w-full min-w-30 max-w-120 rounded-lg bg-[#171721]"
   });
   const searchInput = el("input", {
     className: "flex-1 h-10 px-3 min-w-30 rounded-lg bg-[#171721] border border-[var(--color-border)] text-sm text-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-border)]",
@@ -351,14 +406,117 @@ function initSearch() {
   search.append(searchInput, searchIcon);
   return search;
 }
+function initDropdownLang() {
+  const languages = el("div", {
+    className: "relative flex justify-self-end justify-between items-center h-10 min-w-30 rounded-lg space-x-1 relative inline-block text-left"
+  });
+  const button = el("button", {
+    id: "dropdown-button",
+    className: "inline-flex gap-2 justify-between items-center w-60 rounded-lg border border-[var(--color-border)] shadow-sm px-4 h-full w-full bg-[var(--color-primary)] text-sm hover:bg-gray-600",
+    attrs: { type: "button" }
+  });
+  const selected = el("span", {
+    id: "dropdown-selected",
+    className: "w-full text-left overflow-hidden flex-1",
+    text: "English"
+  });
+  const caret = createIcon("M6 9l6 6 6-6", {
+    width: 4,
+    height: 4,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  });
+  button.setAttribute("aria-haspopup", "true");
+  button.setAttribute("aria-expanded", "false");
+  caret.setAttribute("id", "caret");
+  caret.style.transform = "rotate(0deg)";
+  caret.style.transition = " transform 0.15s ease-in-out";
+  button.append(selected, caret);
+  const menu = el("div", {
+    id: "dropdown-menu",
+    className: "origin-top-right absolute hidden w-full left-0 mt-2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-gray-300",
+    attrs: {
+      role: "menu",
+      "aria-orientation": "vertical",
+      "aria-labelledby": "dropdown-button",
+      tabindex: "-1"
+    }
+  });
+  const menuOptions = el("div", {
+    className: "py-1 text-white",
+    attrs: { role: "none" }
+  });
+  const LANGS = {
+    en: { label: "English" },
+    ru: { label: "Русский" },
+    de: { label: "Deutsch" }
+  };
+  const createOption = (code) => {
+    const option = el("a", {
+      id: `lang-${code}`,
+      className: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+      attrs: { role: "lang-option", href: "#", "data-lang": code }
+    });
+    option.textContent = LANGS[code].label;
+    return option;
+  };
+  const english = createOption("en");
+  const russian = createOption("ru");
+  const german = createOption("de");
+  menu.append(menuOptions);
+  menuOptions.append(english, russian, german);
+  languages.append(button, menu);
+  function toggleCaret() {
+    caret.style.transform == "rotate(0deg)" ? caret.style.transform = "rotate(180deg)" : caret.style.transform = "rotate(0deg)";
+  }
+  button.addEventListener("click", function(event) {
+    event.stopPropagation();
+    toggleCaret();
+    menu.classList.toggle("hidden");
+    button.setAttribute(
+      "aria-expanded",
+      menu.classList.contains("hidden") ? "false" : "true"
+    );
+  });
+  const dropdownItems = menu.querySelectorAll("[role='lang-option']");
+  dropdownItems.forEach(function(item) {
+    item.addEventListener("click", async function(event) {
+      event.preventDefault();
+      const lang = item.getAttribute("data-lang");
+      if (!lang) return;
+      selected.textContent = LANGS[lang]?.label || item.textContent;
+      await loadLanguage(lang);
+      menu.classList.add("hidden");
+      button.setAttribute("aria-expanded", "false");
+      toggleCaret();
+    });
+  });
+  document.addEventListener("click", function(event) {
+    if (!menu.contains(event.target)) {
+      menu.classList.add("hidden");
+      button.setAttribute("aria-expanded", "false");
+      caret.style.transform = "rotate(0deg)";
+    }
+  });
+  const savedLang = localStorage.getItem("lang") || "en";
+  if (LANGS[savedLang]) {
+    selected.textContent = LANGS[savedLang].label;
+  }
+  return languages;
+}
 function initHeader() {
   const header = el("div", {
     className: "flex items-center flex-shrink-0 justify-center p-2 mb-4 w-full"
   });
   const headerContent = el("nav", {
-    className: "flex items-center justify-between w-full  gap-2"
+    className: "flex items-center justify-end w-full  gap-2"
   });
   const search = initSearch();
+  const languages = initDropdownLang();
   const notificationsWrapper = el("div", {
     className: "rounded-full size-10"
   });
@@ -375,7 +533,7 @@ function initHeader() {
   });
   notifications.append(notificationsIcon, badge);
   notificationsWrapper.append(notifications);
-  headerContent.append(search, notificationsWrapper);
+  headerContent.append(search, languages, notificationsWrapper);
   header.append(headerContent);
   return header;
 }
@@ -392,10 +550,12 @@ function initDashboard() {
   });
   const pageTitle = el("h1", {
     text: "Dashboard",
+    i18n: "dashboard.title",
     className: "text-4xl font-bold text-zinc-950 dark:text-white"
   });
   const description = el("p", {
     text: "Here will be the dashboard content.",
+    i18n: "dashboard.description",
     className: "text-sm text-gray-400"
   });
   pageContent.append(pageTitle, description);
@@ -403,33 +563,6 @@ function initDashboard() {
   dashboard.append(header, page);
   return dashboard;
 }
-const __vite_glob_0_0 = "/system/assets/1c.qNPM4d83.png";
-const __vite_glob_0_1 = "/system/assets/accountant.DpCDMNoF.png";
-const __vite_glob_0_2 = "/system/assets/business.16gnDF2l.png";
-const __vite_glob_0_3 = "/system/assets/c__.Bgtmkdyr.png";
-const __vite_glob_0_4 = "/system/assets/cyber.C7uPl0lx.png";
-const __vite_glob_0_5 = "/system/assets/data_an.Bz5TYpqJ.png";
-const __vite_glob_0_6 = "/system/assets/design_ai.C90AsTOO.png";
-const __vite_glob_0_7 = "/system/assets/design_face.Dbfl6SFI.png";
-const __vite_glob_0_8 = "/system/assets/design_item.oyCF8Q7_.png";
-const __vite_glob_0_9 = "/system/assets/dev_ai.BqzyUwY-.png";
-const __vite_glob_0_10 = "/system/assets/economic.DiiFP6MY.png";
-const __vite_glob_0_11 = "/system/assets/fashion.DwpuZaUY.png";
-const __vite_glob_0_12 = "/system/assets/finance.D6CoGN2R.png";
-const __vite_glob_0_13 = "/system/assets/graph.DH95juJp.png";
-const __vite_glob_0_14 = "/system/assets/hr.BvBrfyW4.png";
-const __vite_glob_0_15 = "/system/assets/html.BMwUNedB.png";
-const __vite_glob_0_16 = "/system/assets/interior.CQEJ7EuC.png";
-const __vite_glob_0_17 = "/system/assets/java.CuO6y1gp.png";
-const __vite_glob_0_18 = "/system/assets/js.bwI8X06P.png";
-const __vite_glob_0_19 = "/system/assets/landscape.DJX24JRG.png";
-const __vite_glob_0_20 = "/system/assets/linux.Co2yX9Mr.png";
-const __vite_glob_0_21 = "/system/assets/pepe-mini.DzoANEG7.jpg";
-const __vite_glob_0_22 = "/system/assets/product.G6OMbplu.png";
-const __vite_glob_0_23 = "/system/assets/project.Dpk0Fpbh.png";
-const __vite_glob_0_24 = "/system/assets/py.6CzbFQ9I.png";
-const __vite_glob_0_25 = "/system/assets/sys_admin.BPyRUumj.png";
-const images = /* @__PURE__ */ Object.assign({ "../assets/img/1c.png": __vite_glob_0_0, "../assets/img/accountant.png": __vite_glob_0_1, "../assets/img/business.png": __vite_glob_0_2, "../assets/img/c++.png": __vite_glob_0_3, "../assets/img/cyber.png": __vite_glob_0_4, "../assets/img/data_an.png": __vite_glob_0_5, "../assets/img/design_ai.png": __vite_glob_0_6, "../assets/img/design_face.png": __vite_glob_0_7, "../assets/img/design_item.png": __vite_glob_0_8, "../assets/img/dev_ai.png": __vite_glob_0_9, "../assets/img/economic.png": __vite_glob_0_10, "../assets/img/fashion.png": __vite_glob_0_11, "../assets/img/finance.png": __vite_glob_0_12, "../assets/img/graph.png": __vite_glob_0_13, "../assets/img/hr.png": __vite_glob_0_14, "../assets/img/html.png": __vite_glob_0_15, "../assets/img/interior.png": __vite_glob_0_16, "../assets/img/java.png": __vite_glob_0_17, "../assets/img/js.png": __vite_glob_0_18, "../assets/img/landscape.png": __vite_glob_0_19, "../assets/img/linux.png": __vite_glob_0_20, "../assets/img/pepe-mini.jpg": __vite_glob_0_21, "../assets/img/product.png": __vite_glob_0_22, "../assets/img/project.png": __vite_glob_0_23, "../assets/img/py.png": __vite_glob_0_24, "../assets/img/sys_admin.png": __vite_glob_0_25 });
 class Card {
   constructor({ title, img, desc, href = "#" }) {
     this.card = el("article", {
@@ -440,7 +573,7 @@ class Card {
     });
     const image = el("img", {
       className: "transition-transform duration-500 hover:scale-110 w-full h-full object-cover transition-transform duration-500 hover:scale-110",
-      attrs: { src: images[`../assets/img/${img}`], alt: title, loading: "lazy" }
+      attrs: { src: images[`./assets/img/${img}`], alt: title, loading: "lazy" }
     });
     const gradientOverlay = el("div", {
       className: "pointer-events-none absolute inset-x-0 top-0 h-full rounded-[16px]",
@@ -615,6 +748,7 @@ function initGridCards() {
       });
       this.rowTitle = el("h2", {
         text: title,
+        i18n: `courses.${title.toLowerCase()}`,
         className: "text-lg font-bold text-zinc-950 dark:text-white"
       });
       const elements = [];
@@ -694,6 +828,7 @@ function initCourses() {
   });
   const pageTitle = el("h1", {
     text: "All courses",
+    i18n: "courses.title",
     className: "text-4xl font-bold text-zinc-950 dark:text-white"
   });
   pageContent.append(pageTitle, gridCards);
@@ -714,14 +849,16 @@ function initFilterBar() {
   });
   const filterText = el("span", {
     className: "font-medium",
-    text: "Filter by:"
+    text: "Filter by:",
+    i18n: "articles.filterBy"
   });
   const mostRecentButton = el("button", {
     className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
   });
   const mostRecentText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
-    text: "Most Recent"
+    text: "Most Recent",
+    i18n: "articles.mostRecent"
   });
   const expandMoreIcon = el("span", {
     className: "material-symbols-outlined text-sm text-white opacity-70",
@@ -732,14 +869,16 @@ function initFilterBar() {
   });
   const highestRatedText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
-    text: "Highest Rated"
+    text: "Highest Rated",
+    i18n: "articles.highestRated"
   });
-  const verifiedTradersButton = el("button", {
+  const verifiedButton = el("button", {
     className: "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all"
   });
-  const verifiedTradersText = el("span", {
+  const verifiedText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
-    text: "Verified Traders"
+    text: "Verified",
+    i18n: "articles.verified"
   });
   const checkCircleIcon = el("span", {
     className: "material-symbols-outlined text-sm text-white opacity-70",
@@ -750,15 +889,16 @@ function initFilterBar() {
   });
   const withPhotosText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
-    text: "With Photos"
+    text: "With Photos",
+    i18n: "articles.withPhotos"
   });
   const imageIcon = el("span", {
     className: "material-symbols-outlined text-sm text-white opacity-70",
     text: "image"
   });
   withPhotosButton.append(withPhotosText, imageIcon);
-  verifiedTradersButton.append(
-    verifiedTradersText,
+  verifiedButton.append(
+    verifiedText,
     checkCircleIcon,
     expandMoreIcon
   );
@@ -769,7 +909,7 @@ function initFilterBar() {
     filter,
     mostRecentButton,
     highestRatedButton,
-    verifiedTradersButton,
+    verifiedButton,
     withPhotosButton
   );
   return filterBar;
@@ -787,7 +927,8 @@ function initArticles() {
     className: "flex flex-1 flex-col items-start justify-start gap-2"
   });
   const pageTitle = el("h1", {
-    text: "Articles base",
+    text: "Articles",
+    i18n: "articles.title",
     className: "text-4xl font-bold text-zinc-950 dark:text-white"
   });
   pageContent.append(pageTitle, filterBar);
@@ -861,7 +1002,8 @@ function initSignIn() {
   linkWrapper.append("Already Have An Account? ", linkSpan);
   return page;
 }
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadLanguage();
   const { main } = buildUI(document.body);
   router.init(
     [
