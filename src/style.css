@@ -7,6 +7,12 @@
   --color-border: #b4b7c81f;
 }
 
+html {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 .dark {
   --color-primary: #1d4ed8;
   --color-secondary: #6ee7b7;
