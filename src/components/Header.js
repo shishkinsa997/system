@@ -1,5 +1,6 @@
 import { el } from "../utils.js";
 import { initSearch } from "./Search.js";
+import { initDropdownLang } from "./DropdownLang.js";
 // import { initButton } from "./Button.js";
 
 export function initHeader() {
@@ -8,9 +9,10 @@ export function initHeader() {
       "flex items-center flex-shrink-0 justify-center p-2 mb-4 w-full",
   });
   const headerContent = el("nav", {
-    className: "flex items-center justify-between w-full  gap-2",
+    className: "flex items-center justify-end w-full  gap-2",
   });
   const search = initSearch();
+  const languages = initDropdownLang(); 
   const notificationsWrapper = el("div", {
     className: "rounded-full size-10",
   });
@@ -31,7 +33,7 @@ export function initHeader() {
   // const button = initButton({ text: "Log in", onClick: () => {} });
   notifications.append(notificationsIcon, badge);
   notificationsWrapper.append(notifications);
-  headerContent.append(search, notificationsWrapper);
+  headerContent.append(search, languages, notificationsWrapper);
   header.append(headerContent);
 
   return header;

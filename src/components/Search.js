@@ -2,7 +2,7 @@ import { el, createIcon } from "../utils.js";
 
 export function initSearch() {
   const search = el("div", {
-    className: "relative flex items-center h-10 w-full min-w-30 max-w-120 rounded-lg bg-[#171721]",
+    className: "relative flex items-center mr-auto h-10 w-full min-w-30 max-w-120 rounded-lg bg-[#171721]",
   });
   const searchInput = el("input", {
     className:
