@@ -54,4 +54,10 @@ function createIcon(pathData, options = {}) {
   return svg;
 }
 
-export { el, createIcon };
+const images = import.meta.glob("./assets/img/*", { eager: true, as: "url" });
+console.log(images);
+console.log(images.length);
+
+
+
+export { el, createIcon, images };

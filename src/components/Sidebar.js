@@ -1,4 +1,4 @@
-import { el } from "../utils.js";
+import { el, images } from "../utils.js";
 
 export function initSidebar() {
   const sidebar = el("aside", {
@@ -138,7 +138,7 @@ export function initSidebar() {
   avatarText.append(avatarName, avatarRole);
   const avatar = el("img", {
     className: "rounded-full size-10 ml-1 inline-grid shrink-0 align-middle",
-    attrs: { src: "pepe-mini.jpg" },
+    attrs: { src: images["./assets/img/pepe-mini.jpg"] },
   });
   profileWrapper.append(avatar, avatarText);
 

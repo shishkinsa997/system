@@ -1,6 +1,4 @@
-import { el } from "../utils.js";
-
-const images = import.meta.glob("../assets/img/*", { eager: true, as: "url" });
+import { el, images } from "../utils.js";
 
 export class Card {
   constructor({ title, img, desc, href = "#" }) {
@@ -16,7 +14,7 @@ export class Card {
     const image = el("img", {
       className:
         "transition-transform duration-500 hover:scale-110 w-full h-full object-cover transition-transform duration-500 hover:scale-110",
-      attrs: { src: images[`../assets/img/${img}`], alt: title, loading: "lazy" },
+      attrs: { src: images[`./assets/img/${img}`], alt: title, loading: "lazy" },
     });
 
     const gradientOverlay = el("div", {
