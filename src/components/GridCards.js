@@ -147,6 +147,7 @@ export function initGridCards() {
       });
       this.rowTitle = el("h2", {
         text: title,
+        i18n: `courses.${title.toLowerCase()}`,
         className: "text-lg font-bold text-zinc-950 dark:text-white",
       });
 

@@ -15,6 +15,7 @@ export function initFilterBar() {
   const filterText = el("span", {
     className: "font-medium",
     text: "Filter by:",
+    i18n: "articles.filterBy",
   });
 
   const mostRecentButton = el("button", {
@@ -24,6 +25,7 @@ export function initFilterBar() {
   const mostRecentText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
     text: "Most Recent",
+    i18n: "articles.mostRecent",
   });
   const expandMoreIcon = el("span", {
     className: "material-symbols-outlined text-sm text-white opacity-70",
@@ -37,15 +39,17 @@ export function initFilterBar() {
   const highestRatedText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
     text: "Highest Rated",
+    i18n: "articles.highestRated",
   });
 
-  const verifiedTradersButton = el("button", {
+  const verifiedButton = el("button", {
     className:
       "group cursor-pointer flex min-h-10 items-center justify-center gap-x-2 rounded-lg bg-card hover:bg-[var(--color-primary)] focus:outline-2 focus:outline-offset-2 focus:outline-gray-500 active:bg-[var(--color-primary)] pl-4 pr-3 py-2 transition-all",
   });
-  const verifiedTradersText = el("span", {
+  const verifiedText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
-    text: "Verified Traders",
+    text: "Verified",
+    i18n: "articles.verified",
   });
   const checkCircleIcon = el("span", {
     className: "material-symbols-outlined text-sm text-white opacity-70",
@@ -59,14 +63,15 @@ export function initFilterBar() {
   const withPhotosText = el("span", {
     className: "text-sm font-medium text-white opacity-70",
     text: "With Photos",
+    i18n: "articles.withPhotos",
   });
   const imageIcon = el("span", {
     className: "material-symbols-outlined text-sm text-white opacity-70",
     text: "image",
   });
   withPhotosButton.append(withPhotosText, imageIcon);
-  verifiedTradersButton.append(
-    verifiedTradersText,
+  verifiedButton.append(
+    verifiedText,
     checkCircleIcon,
     expandMoreIcon,
   );
@@ -77,7 +82,7 @@ export function initFilterBar() {
     filter,
     mostRecentButton,
     highestRatedButton,
-    verifiedTradersButton,
+    verifiedButton,
     withPhotosButton,
   );
   return filterBar;

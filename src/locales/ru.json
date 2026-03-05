@@ -1,0 +1,26 @@
+{
+  "side.title": "Гачи Практикум",
+  "side.subtitle": "Премиальное обучение",
+  "side.dashboard": "Моя доска",
+  "side.courses": "Курсы",
+  "side.articles": "Статьи",
+  "side.support": "Поддержка",
+  "side.settings": "Настройки",
+  "side.role": "Админ",
+
+  "dashboard.title": "Моя доска",
+  "dashboard.description": "Здесь будет контент.",
+
+  "courses.title": "Все курсы",
+  "courses.programming": "Программирование",
+  "courses.design": "Дизайн",
+  "courses.management": "Менеджмент",
+
+  "articles.title": "Статьи",
+  "articles.filterBy": "Фильтр:",
+  "articles.verified": "Официальные",
+  "articles.mostRecent": "Недавние",
+  "articles.highestRated": "По рейтингу",
+  "articles.withPhotos": "С фото"
+
+}

@@ -17,11 +17,13 @@ export function initSidebar() {
     className:
       "ml-2 text-l leading-6 flex flex-col font-bold whitespace-nowrap text-zinc-950 dark:text-white",
     text: "Gachi PractiCum",
+    i18n: "side.title",
   });
   const gachiSubtitle = el("span", {
     className:
       "text-[10px] leading-2 whitespace-nowrap text-zinc-500 dark:text-zinc-400",
     text: "Premium Learning",
+    i18n: "side.subtitle",
   });
   const gachiLogo = el("span", {
     className: "material-symbols-outlined text-[32px]! w-8 h-8 dark:text-white",
@@ -132,6 +134,7 @@ export function initSidebar() {
   });
   const avatarRole = el("span", {
     text: "Admin",
+    i18n: "side.role",
     className:
       "block truncate text-m font-normal text-zinc-500 dark:text-zinc-400",
   });
@@ -189,6 +192,7 @@ export function initSidebar() {
     const text = el("span", {
       className: "ml-4 text-m font-medium whitespace-nowrap",
       text: `${tag}`,
+      i18n: `side.${id}`,
     });
     container.append(icon, text);
 

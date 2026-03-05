@@ -1,13 +1,15 @@
 import "./style.css";
 import { buildUI } from "./ui.js";
 import { router } from "./router.js";
+import { loadLanguage } from "./services/i18n.js";
 import { initDashboard } from "./components/Dashboard.js";
 import { initCourses } from "./components/Courses.js";
 import { initArticles } from "./components/Articles.js";
 import { initNotFound } from "./components/Notfound.js";
 import { initSignIn } from "./components/SignIn.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadLanguage();
   const { main } = buildUI(document.body);
 
   router.init(

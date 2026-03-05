@@ -1,0 +1,25 @@
+{
+  "side.title": "Gachi Practicum",
+  "side.subtitle": "Premium Learning",
+  "side.dashboard": "Dashboard",
+  "side.courses": "Courses",
+  "side.articles": "Articles",
+  "side.support": "Support",
+  "side.settings": "Settings",
+  "side.role": "Admin",
+
+  "dashboard.title": "Dashboard",
+  "dashboard.description": "Here will be the dashboard content.",
+
+  "courses.title": "All courses",
+  "courses.programming": "Programming",
+  "courses.design": "Design",
+  "courses.management": "Management",
+
+  "articles.title": "Articles base",
+  "articles.filterBy": "Filter by:",
+  "articles.verified": "Verified",
+  "articles.mostRecent": "Most Recent",
+  "articles.highestRated": "Highest Rated",
+  "articles.withPhotos": "With Photo"
+}

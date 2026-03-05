@@ -19,6 +19,7 @@ export function initCourses() {
 
   const pageTitle = el("h1", {
     text: "All courses",
+    i18n: "courses.title",
     className: "text-4xl font-bold text-zinc-950 dark:text-white",
   });
 

@@ -20,7 +20,8 @@ export function initArticles() {
   });
 
   const pageTitle = el("h1", {
-    text: "Articles base",
+    text: "Articles",
+    i18n: "articles.title",
     className: "text-4xl font-bold text-zinc-950 dark:text-white",
   });
 

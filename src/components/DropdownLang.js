@@ -1,4 +1,5 @@
 import { el, createIcon } from "../utils.js";
+import { loadLanguage } from "../services/i18n.js";
 
 export function initDropdownLang() {
   const languages = el("div", {
@@ -49,19 +50,27 @@ export function initDropdownLang() {
     className: "py-1 text-white",
     attrs: { role: "none" },
   });
-  const createOption = (text) => {
+
+  const LANGS = {
+    en: { label: "English" },
+    ru: { label: "Русский" },
+    de: { label: "Deutsch" },
+  };
+
+  const createOption = (code) => {
     const option = el("a", {
-      id: `lang-${text.toLowerCase()}`,
+      id: `lang-${code}`,
       className:
         "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-      attrs: { role: "lang-option", href: "#" },
+      attrs: { role: "lang-option", href: "#", "data-lang": code },
     });
-    option.textContent = text;
+    option.textContent = LANGS[code].label;
     return option;
   };
-  const russian = createOption("Russian");
-  const english = createOption("English");
-  const german = createOption("German");
+
+  const english = createOption("en");
+  const russian = createOption("ru");
+  const german = createOption("de");
   menu.append(menuOptions);
   menuOptions.append(english, russian, german);
   languages.append(button, menu);
@@ -85,9 +94,14 @@ export function initDropdownLang() {
 
   const dropdownItems = menu.querySelectorAll("[role='lang-option']");
   dropdownItems.forEach(function (item) {
-    item.addEventListener("click", function (event) {
+    item.addEventListener("click", async function (event) {
       event.preventDefault();
-      selected.textContent = item.textContent;
+      const lang = item.getAttribute("data-lang");
+      if (!lang) return;
+
+      selected.textContent = LANGS[lang]?.label || item.textContent;
+      await loadLanguage(lang);
+
       menu.classList.add("hidden");
       button.setAttribute("aria-expanded", "false");
       toggleCaret();
@@ -101,6 +115,11 @@ export function initDropdownLang() {
       caret.style.transform = "rotate(0deg)";
     }
   });
+
+  const savedLang = localStorage.getItem("lang") || "en";
+  if (LANGS[savedLang]) {
+    selected.textContent = LANGS[savedLang].label;
+  }
 
   return languages;
 }

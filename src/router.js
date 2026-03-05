@@ -1,3 +1,5 @@
+import { applyTranslations } from "./services/i18n.js";
+
 const BASE_URL = import.meta.env.BASE_URL;
 
 export const router = {
@@ -50,5 +52,7 @@ export const router = {
     if (!element) return;
 
     this.container.replaceChildren(element);
+
+    applyTranslations();
   },
 };

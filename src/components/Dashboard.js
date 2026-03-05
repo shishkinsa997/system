@@ -19,12 +19,13 @@ export function initDashboard() {
 
   const pageTitle = el("h1", {
     text: "Dashboard",
+    i18n: "dashboard.title",
     className: "text-4xl font-bold text-zinc-950 dark:text-white",
   });
 
   const description = el("p", {
     text: "Here will be the dashboard content.",
-
+    i18n: "dashboard.description",
     className: "text-sm text-gray-400",
   });
 

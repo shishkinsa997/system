@@ -4,6 +4,7 @@ function el(tag, options = {}) {
   if (options.id) e.id = options.id;
   if (options.text) e.textContent = options.text;
   if (options.html) e.innerHTML = options.html;
+  if (options.i18n) e.setAttribute("data-i18n", options.i18n);
   if (options.attrs) {
     for (const k in options.attrs) e.setAttribute(k, options.attrs[k]);
   }
@@ -55,9 +56,5 @@ function createIcon(pathData, options = {}) {
 }
 
 const images = import.meta.glob("./assets/img/*", { eager: true, as: "url" });
-console.log(images);
-console.log(images.length);
-
-
 
 export { el, createIcon, images };
