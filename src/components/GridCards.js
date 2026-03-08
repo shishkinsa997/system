@@ -34,11 +34,13 @@ export function initGridCards() {
   });
   const devAI = new Card({
     title: "AI Developer",
+    type: "course",
     img: "dev_ai.png",
     desc: "My heart, it breaks, my soul it aches",
   });
   const html = new Card({
     title: "HTML/CSS Developer",
+    type: "course",
     img: "html.png",
     desc: "Please don't tell me you're too busy, I need your love, I need your love",
   });
