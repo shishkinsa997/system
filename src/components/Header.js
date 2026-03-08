@@ -4,7 +4,7 @@ import { initDropdownLang } from "./DropdownLang.js";
 // import { initButton } from "./Button.js";
 
 export function initHeader() {
-  const header = el("div", {
+  const header = el("header", {
     className:
       "flex items-center flex-shrink-0 justify-center p-2 mb-4 w-full",
   });
@@ -12,7 +12,7 @@ export function initHeader() {
     className: "flex items-center justify-end w-full  gap-2",
   });
   const search = initSearch();
-  const languages = initDropdownLang(); 
+  const languages = initDropdownLang();
   const notificationsWrapper = el("div", {
     className: "rounded-full size-10",
   });
