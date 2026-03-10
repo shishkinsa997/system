@@ -89,7 +89,7 @@ export function initDashboard() {
   const learningBackground = el("div", {
     className:
       "absolute right-0 top-0 bottom-0 w-1/2 bg-cover bg-center opacity-60",
-    attrs: { style: `background-image: url(${images["./assets/img/js.png"]})` },
+    attrs: { style: `background-image: url(${images["js.png"]})` },
   });
   const learningContent = el("div", {
     className: "relative z-20 p-8 md:p-12 flex flex-col justify-center max-w-2xl",

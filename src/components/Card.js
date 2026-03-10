@@ -15,7 +15,7 @@ export class Card {
       className:
         "transition-transform duration-500 hover:scale-110 w-full h-full object-cover transition-transform duration-500 hover:scale-110",
       attrs: {
-        src: images[`./assets/img/${img}`],
+        src: images[img],
         alt: title,
         loading: "lazy",
       },

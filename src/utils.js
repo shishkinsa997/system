@@ -55,6 +55,11 @@ function createIcon(pathData, options = {}) {
   return svg;
 }
 
-const images = import.meta.glob("./assets/img/*", { eager: true, as: "url" });
-
+const rawImages = import.meta.glob("./assets/img/*", { eager: true, as: "url" });
+const images = Object.fromEntries(
+  Object.entries(rawImages).map(([path, url]) => {
+    const fileName = path.replace("./assets/img/", "");
+    return [fileName, url];
+  })
+);
 export { el, createIcon, images };
