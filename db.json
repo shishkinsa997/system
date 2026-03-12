@@ -1,0 +1,204 @@
+{
+   "courses": [
+      {
+         "id": 0,
+         "image": "py.png",
+         "title": "Python-developer + AI",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 1,
+         "image": "js.png",
+         "title": "Fullstack JavaScript developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 2,
+         "image": "c++.png",
+         "title": "C++ developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 3,
+         "image": "java.png",
+         "title": "Java developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 4,
+         "image": "linux.png",
+         "title": "Linux developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 5,
+         "image": "1c.png",
+         "title": "1C developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 6,
+         "image": "dev_ai.png",
+         "title": "AI Developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 6,
+         "image": "dev_ai.png",
+         "title": "AI Developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "course",
+         "major": "programming"
+      },
+      {
+         "id": 7,
+         "image": "html.png",
+         "title": "HTML/CSS Developer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "course",
+         "major": "programming"
+      },
+      {
+         "id": 8,
+         "image": "sys_admin.png",
+         "title": "System Administrator",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 9,
+         "image": "data_an.png",
+         "title": "Data Analyst",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "programming"
+      },
+      {
+         "id": 10,
+         "image": "design_ai.png",
+         "title": "AI Creator",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "design"
+      },
+      {
+         "id": 11,
+         "image": "design_face.png",
+         "title": "Makeup Artist",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "design"
+      },
+      {
+         "id": 12,
+         "image": "design_item.png",
+         "title": "Item Photographer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "design"
+      },
+      {
+         "id": 13,
+         "image": "fashion.png",
+         "title": "Fashion Designer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "design"
+      },
+      {
+         "id": 14,
+         "image": "graph.png",
+         "title": "Graphic Designer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "design"
+      },
+      {
+         "id": 15,
+         "image": "interior.png",
+         "title": "Interior Designer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "design"
+      },
+      {
+         "id": 16,
+         "image": "landscape.png",
+         "title": "Landscape Designer",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "design"
+      },
+      {
+         "id": 17,
+         "image": "finance.png",
+         "title": "Finance Analyst",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "management"
+      },
+      {
+         "id": 18,
+         "image": "economic.png",
+         "title": "Economic Financier",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "management"
+      },
+      {
+         "id": 19,
+         "image": "business.png",
+         "title": "Business Analyst",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "management"
+      },
+      {
+         "id": 20,
+         "image": "accountant.png",
+         "title": "Accountant",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "management"
+      },
+      {
+         "id": 21,
+         "image": "hr.png",
+         "title": "Human Resources Manager",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "management"
+      },
+      {
+         "id": 22,
+         "image": "product.png",
+         "title": "Product Manager",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "management"
+      },
+      {
+         "id": 23,
+         "image": "project.png",
+         "title": "Project Manager",
+         "desc": "First I was afraid, I was petrified",
+         "type": "profession",
+         "major": "management"
+      }
+   ]
+}
