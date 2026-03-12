@@ -100,7 +100,13 @@ function createIcon(pathData, options = {}) {
   svg.appendChild(path);
   return svg;
 }
-const images = /* @__PURE__ */ Object.assign({ "./assets/img/1c.png": __vite_glob_0_0$1, "./assets/img/accountant.png": __vite_glob_0_1$1, "./assets/img/business.png": __vite_glob_0_2, "./assets/img/c++.png": __vite_glob_0_3, "./assets/img/cyber.png": __vite_glob_0_4, "./assets/img/data_an.png": __vite_glob_0_5, "./assets/img/design_ai.png": __vite_glob_0_6, "./assets/img/design_face.png": __vite_glob_0_7, "./assets/img/design_item.png": __vite_glob_0_8, "./assets/img/dev_ai.png": __vite_glob_0_9, "./assets/img/economic.png": __vite_glob_0_10, "./assets/img/fashion.png": __vite_glob_0_11, "./assets/img/finance.png": __vite_glob_0_12, "./assets/img/graph.png": __vite_glob_0_13, "./assets/img/hr.png": __vite_glob_0_14, "./assets/img/html.png": __vite_glob_0_15, "./assets/img/interior.png": __vite_glob_0_16, "./assets/img/java.png": __vite_glob_0_17, "./assets/img/js.png": __vite_glob_0_18, "./assets/img/landscape.png": __vite_glob_0_19, "./assets/img/linux.png": __vite_glob_0_20, "./assets/img/pepe-mini.jpg": __vite_glob_0_21, "./assets/img/product.png": __vite_glob_0_22, "./assets/img/project.png": __vite_glob_0_23, "./assets/img/py.png": __vite_glob_0_24, "./assets/img/sys_admin.png": __vite_glob_0_25 });
+const rawImages = /* @__PURE__ */ Object.assign({ "./assets/img/1c.png": __vite_glob_0_0$1, "./assets/img/accountant.png": __vite_glob_0_1$1, "./assets/img/business.png": __vite_glob_0_2, "./assets/img/c++.png": __vite_glob_0_3, "./assets/img/cyber.png": __vite_glob_0_4, "./assets/img/data_an.png": __vite_glob_0_5, "./assets/img/design_ai.png": __vite_glob_0_6, "./assets/img/design_face.png": __vite_glob_0_7, "./assets/img/design_item.png": __vite_glob_0_8, "./assets/img/dev_ai.png": __vite_glob_0_9, "./assets/img/economic.png": __vite_glob_0_10, "./assets/img/fashion.png": __vite_glob_0_11, "./assets/img/finance.png": __vite_glob_0_12, "./assets/img/graph.png": __vite_glob_0_13, "./assets/img/hr.png": __vite_glob_0_14, "./assets/img/html.png": __vite_glob_0_15, "./assets/img/interior.png": __vite_glob_0_16, "./assets/img/java.png": __vite_glob_0_17, "./assets/img/js.png": __vite_glob_0_18, "./assets/img/landscape.png": __vite_glob_0_19, "./assets/img/linux.png": __vite_glob_0_20, "./assets/img/pepe-mini.jpg": __vite_glob_0_21, "./assets/img/product.png": __vite_glob_0_22, "./assets/img/project.png": __vite_glob_0_23, "./assets/img/py.png": __vite_glob_0_24, "./assets/img/sys_admin.png": __vite_glob_0_25 });
+const images = Object.fromEntries(
+  Object.entries(rawImages).map(([path, url]) => {
+    const fileName = path.replace("./assets/img/", "");
+    return [fileName, url];
+  })
+);
 function initSidebar() {
   const sidebar = el("aside", {
     id: "sidebar",
@@ -227,7 +233,7 @@ function initSidebar() {
   avatarText.append(avatarName, avatarRole);
   const avatar = el("img", {
     className: "rounded-full size-10 ml-1 inline-grid shrink-0 align-middle",
-    attrs: { src: images["./assets/img/pepe-mini.jpg"] }
+    attrs: { src: images["pepe-mini.jpg"] }
   });
   profileWrapper.append(avatar, avatarText);
   profile.append(profileWrapper);
@@ -654,7 +660,7 @@ function initDashboard() {
   });
   const learningBackground = el("div", {
     className: "absolute right-0 top-0 bottom-0 w-1/2 bg-cover bg-center opacity-60",
-    attrs: { style: `background-image: url(${images["./assets/img/js.png"]})` }
+    attrs: { style: `background-image: url(${images["js.png"]})` }
   });
   const learningContent = el("div", {
     className: "relative z-20 p-8 md:p-12 flex flex-col justify-center max-w-2xl"
@@ -744,9 +750,12 @@ function initDashboard() {
   return dashboard;
 }
 class Card {
-  constructor({ title, type = "profession", img, desc, href = "#" }) {
+  constructor({ title, type = "profession", major, img, desc, href = "#" }) {
     this.card = el("article", {
-      className: "relative overflow-hidden aspect-square min-w-72 rounded-[16px] border border-[var(--color-border)] group"
+      className: "relative overflow-hidden aspect-square min-w-72 rounded-[16px] border border-[var(--color-border)] group",
+      attrs: {
+        "data-major": major
+      }
     });
     const imageWrapper = el("picture", {
       className: "absolute inset-0"
@@ -754,7 +763,7 @@ class Card {
     const image = el("img", {
       className: "transition-transform duration-500 hover:scale-110 w-full h-full object-cover transition-transform duration-500 hover:scale-110",
       attrs: {
-        src: images[`./assets/img/${img}`],
+        src: images[img],
         alt: title,
         loading: "lazy"
       }
@@ -798,211 +807,88 @@ class Card {
     return this.card;
   }
 }
+async function mainData() {
+  const localUrl = "./db.json";
+  const response = await fetch(localUrl);
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+  return await response.json();
+}
+mainData().then((data) => {
+  renderCards(data);
+}).catch((error) => {
+  console.error(error);
+});
+async function renderCards(data) {
+  setTimeout(() => {
+    const gridCards = document.getElementById("grid-cards");
+    console.log(gridCards);
+    gridCards.innerHTML = "";
+    const allCards = [];
+    data.courses.forEach((course) => {
+      const card = new Card({
+        title: course.title,
+        img: course.image,
+        desc: course.desc,
+        type: course.type,
+        major: course.major
+      });
+      allCards.push(card);
+    });
+    class Row {
+      constructor(title, ...cards) {
+        this.row = el("div", {
+          className: "flex flex-col h-full w-full gap-2"
+        });
+        this.rowCards = el("div", {
+          className: "flex overflow-x-auto scroll-smooth no-scrollbar h-full w-full gap-4 mt-4"
+        });
+        this.rowTitle = el("h2", {
+          text: title,
+          i18n: `courses.${title.toLowerCase()}`,
+          className: "text-lg font-bold text-zinc-950 dark:text-white"
+        });
+        const elements = [];
+        cards.forEach((item) => {
+          elements.push(item);
+        });
+        this.rowCards.append(
+          ...elements.map((item) => {
+            const node = item.render();
+            return node.parentNode ? node.cloneNode(true) : node;
+          })
+        );
+        this.row.append(this.rowTitle, this.rowCards);
+      }
+      add(...cards) {
+        const elements = [];
+        cards.forEach((item) => {
+          elements.push(item);
+        });
+        this.row.append(
+          ...elements.map((item) => {
+            const node = item.render();
+            return node.parentNode ? node.cloneNode(true) : node;
+          })
+        );
+      }
+    }
+    const fileredRow = (m) => {
+      return allCards.filter((c) => c.card.dataset.major === m);
+    };
+    const programmingRow = new Row("Programming", ...fileredRow("programming"));
+    const designRow = new Row("Design", ...fileredRow("design"));
+    const managementRow = new Row("Management", ...fileredRow("management"));
+    gridCards.append(programmingRow.row, designRow.row, managementRow.row);
+    return gridCards;
+  }, 10);
+}
 function initGridCards() {
-  const py = new Card({
-    title: "Python-developer + AI",
-    img: "py.png",
-    desc: "First I was afraid, I was petrified"
-  });
-  const js = new Card({
-    title: "Fullstack JavaScript developer",
-    img: "js.png",
-    desc: "Then I spent so many nights thinking how you did me wrong"
-  });
-  const cpp = new Card({
-    title: "C++ developer",
-    img: "c++.png",
-    desc: "But I grew strong, and I learned how to get along"
-  });
-  const java = new Card({
-    title: "Java developer",
-    img: "java.png",
-    desc: "How I met you, I don't know"
-  });
-  const linux = new Card({
-    title: "Linux developer",
-    img: "linux.png",
-    desc: "I just walked in to find you here with that sad look upon your face"
-  });
-  const oneC = new Card({
-    title: "1C developer",
-    img: "1c.png",
-    desc: "And now you're back from outer space"
-  });
-  const devAI = new Card({
-    title: "AI Developer",
-    type: "course",
-    img: "dev_ai.png",
-    desc: "My heart, it breaks, my soul it aches"
-  });
-  const html = new Card({
-    title: "HTML/CSS Developer",
-    type: "course",
-    img: "html.png",
-    desc: "Please don't tell me you're too busy, I need your love, I need your love"
-  });
-  const cyber = new Card({
-    title: "Cyber Security + AI",
-    img: "cyber.png",
-    desc: "Bringing back the love I had for you"
-  });
-  const sysAdmin = new Card({
-    title: "System Administrator",
-    img: "sys_admin.png",
-    desc: "So now I'm back, from outer space"
-  });
-  const dataAn = new Card({
-    title: "Data Analyst",
-    img: "data_an.png",
-    desc: "I should have changed that stupid lock, I should have made you leave your key"
-  });
-  const designAI = new Card({
-    title: "AI Creator",
-    img: "design_ai.png",
-    desc: "Who I am today"
-  });
-  const designFace = new Card({
-    title: "Makeup Artist",
-    img: "design_face.png",
-    desc: "Shine bright like a diamond"
-  });
-  const photoItem = new Card({
-    title: "Item Photographer",
-    img: "design_item.png",
-    desc: "Come on, come on, come on"
-  });
-  const fashion = new Card({
-    title: "Fashion Designer",
-    img: "fashion.png",
-    desc: "Kiss me, kiss me, kiss me"
-  });
-  const graph = new Card({
-    title: "Graphic Designer",
-    img: "graph.png",
-    desc: "I'm gonna dress you up in my love and make you just feel my love"
-  });
-  const interior = new Card({
-    title: "Interior Designer",
-    img: "interior.png",
-    desc: "Got no reason, got no shame, I know I left a lie somewhere in my brain"
-  });
-  const landscape = new Card({
-    title: "Landscape Designer",
-    img: "landscape.png",
-    desc: "Oh, now I'm back, from outer space"
-  });
-  const finance = new Card({
-    title: "Finance Analyst",
-    img: "finance.png",
-    desc: "You better shape up, cause I need a shape up"
-  });
-  const economic = new Card({
-    title: "Economic Financier",
-    img: "economic.png",
-    desc: "I'm not a broken heart, I'm just a broken heart"
-  });
-  const business = new Card({
-    title: "Business Analyst",
-    img: "business.png",
-    desc: "Thoughts of loving you just drive me crazy"
-  });
-  const accountant = new Card({
-    title: "Accountant",
-    img: "accountant.png",
-    desc: "Keeping me up, night after night"
-  });
-  const hr = new Card({
-    title: "Human Resources Manager",
-    img: "hr.png",
-    desc: "Now I'm saving all my loving for you, yeah, I'm saving all my loving for you"
-  });
-  const product = new Card({
-    title: "Product Manager",
-    img: "product.png",
-    desc: "Please don't tell me you're too busy, I need your love, I need your love"
-  });
-  const project = new Card({
-    title: "Project Manager",
-    img: "project.png",
-    desc: "Please don't tell me you're too busy, I need your love, I need your love"
-  });
   const gridCards = el("div", {
+    id: "grid-cards",
     className: "flex flex-col scroll-smooth no-scrollbar h-full w-full gap-8 mt-4"
   });
-  class Row {
-    constructor(title, ...cards) {
-      this.row = el("div", {
-        className: "flex flex-col h-full w-full gap-2"
-      });
-      this.rowCards = el("div", {
-        className: "flex overflow-x-auto scroll-smooth no-scrollbar h-full w-full gap-4 mt-4"
-      });
-      this.rowTitle = el("h2", {
-        text: title,
-        i18n: `courses.${title.toLowerCase()}`,
-        className: "text-lg font-bold text-zinc-950 dark:text-white"
-      });
-      const elements = [];
-      cards.forEach((item) => {
-        elements.push(item);
-      });
-      this.rowCards.append(
-        ...elements.map((item) => {
-          const node = item.render();
-          return node.parentNode ? node.cloneNode(true) : node;
-        })
-      );
-      this.row.append(this.rowTitle, this.rowCards);
-    }
-    add(...cards) {
-      const elements = [];
-      cards.forEach((item) => {
-        elements.push(item);
-      });
-      this.row.append(
-        ...elements.map((item) => {
-          const node = item.render();
-          return node.parentNode ? node.cloneNode(true) : node;
-        })
-      );
-    }
-  }
-  const programmingRow = new Row(
-    "Programming",
-    py,
-    js,
-    cpp,
-    java,
-    linux,
-    sysAdmin,
-    oneC,
-    cyber,
-    dataAn,
-    devAI,
-    html
-  );
-  const designRow = new Row(
-    "Design",
-    designAI,
-    designFace,
-    photoItem,
-    fashion,
-    graph,
-    interior,
-    landscape,
-    devAI
-  );
-  const menegmentRow = new Row(
-    "Management",
-    finance,
-    hr,
-    product,
-    project,
-    business,
-    accountant,
-    economic
-  );
-  gridCards.append(programmingRow.row, designRow.row, menegmentRow.row);
   return gridCards;
 }
 function initCourses() {
