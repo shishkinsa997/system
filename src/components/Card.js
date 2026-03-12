@@ -1,10 +1,13 @@
 import { el, images } from "../utils.js";
 
 export class Card {
-  constructor({ title, type = "profession", img, desc, href = "#" }) {
+  constructor({ title, type = "profession", major, img, desc, href = "#" }) {
     this.card = el("article", {
       className:
         "relative overflow-hidden aspect-square min-w-72 rounded-[16px] border border-[var(--color-border)] group",
+      attrs: {
+        "data-major": major
+      }
     });
 
     const imageWrapper = el("picture", {
